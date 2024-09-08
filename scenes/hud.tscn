@@ -1,0 +1,103 @@
+[gd_scene load_steps=9 format=3 uid="uid://d3y2w6dk2qoel"]
+
+[ext_resource type="Texture2D" uid="uid://bxhyx675ffufx" path="res://assets/store-icon.png" id="1_c6yx0"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_v6bi3"]
+[ext_resource type="Shader" path="res://scripts/store.gdshader" id="2_3cltb"]
+[ext_resource type="PackedScene" uid="uid://dr0tbgd0iim3e" path="res://scenes/store.tscn" id="3_11lxo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jh3kl"]
+shader = ExtResource("2_3cltb")
+shader_parameter/lod = null
+
+[sub_resource type="Animation" id="Animation_2f5pc"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blur:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [null, 0.8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blur:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.717647), Color(0.282353, 0.282353, 0.282353, 0.682353)]
+}
+
+[sub_resource type="Animation" id="Animation_itoff"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blur:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blur:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.717647)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t2dpn"]
+_data = {
+"RESET": SubResource("Animation_itoff"),
+"blur": SubResource("Animation_2f5pc")
+}
+
+[node name="hud" type="CanvasLayer"]
+script = ExtResource("1_v6bi3")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_jh3kl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.717647)
+
+[node name="OpenStore" type="Button" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+icon = ExtResource("1_c6yx0")
+
+[node name="store" parent="." instance=ExtResource("3_11lxo")]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t2dpn")
+}
+
+[connection signal="pressed" from="OpenStore" to="." method="_on_open_store_pressed"]
+[connection signal="hide" from="store" to="." method="_on_store_hide"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://iagjcdoeawtf"]
+[gd_scene load_steps=8 format=4 uid="uid://iagjcdoeawtf"]
 
 [ext_resource type="Texture2D" uid="uid://b47n3opsae4wi" path="res://assets/water1.png" id="1_lgff2"]
 [ext_resource type="Texture2D" uid="uid://set11erdhkfk" path="res://assets/sand1.png" id="2_wjy4f"]
 [ext_resource type="PackedScene" uid="uid://dr2cu7ky4p2pn" path="res://scenes/waste.tscn" id="3_hidvn"]
+[ext_resource type="PackedScene" uid="uid://d3y2w6dk2qoel" path="res://scenes/hud.tscn" id="4_ef12f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8asoa"]
 texture = ExtResource("1_lgff2")
@@ -20,6 +21,8 @@ sources/0 = SubResource("TileSetAtlasSource_8asoa")
 sources/1 = SubResource("TileSetAtlasSource_in0rl")
 
 [node name="game" type="Node2D"]
+
+[node name="hud" parent="." instance=ExtResource("4_ef12f")]
 
 [node name="waste" type="Node2D" parent="."]
 
