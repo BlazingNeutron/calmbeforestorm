@@ -16,12 +16,12 @@ func _ready():
 
 func _process(delta):
 	if timer + delta > spawn_timer:
-		spawnWaste()
+		spawn_waste()
 		timer = 0
 	else:
 		timer += delta
 
-func spawnWaste():
+func spawn_waste():
 	var random_x = rng.randi_range(min_x, max_x)
 	var new_position = global_position
 	new_position.x = random_x
