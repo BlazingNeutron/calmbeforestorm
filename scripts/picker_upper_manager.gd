@@ -25,16 +25,16 @@ func _on_trash_picked_up(removed_trash) -> void:
 		beach_trash_array.remove_at(beach_trash_index)
 
 func _on_picker_upper_adopted(picker_upper) -> void:
-	print("picker upper added", picker_upper)
+	#print("picker upper added", picker_upper)
 	picker_upper_array.push_front(picker_upper)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	for pu in picker_upper_array:
 		var current_pu_position = pu.global_position
+		var shortest_distance = 10000
+		var closest_trash = null
 		if pu.is_beach_bound:
-			var shortest_distance = 10000
-			var closest_trash = null
 			for trash in beach_trash_array:
 				var trash_pos = trash.global_position
 				var distance = current_pu_position.distance_to(trash_pos)
@@ -42,7 +42,10 @@ func _process(delta: float) -> void:
 					#print("found a close beach garbage for volunteer", trash.position)
 					shortest_distance = distance
 					closest_trash = trash
-			if closest_trash != null:
-				#print("found beach garbage for volunteer")
-				pu.position = pu.position.move_toward(closest_trash.position, delta * pu.speed)
-				pu.move_and_slide()
+		if closest_trash != null:
+			#print("found beach garbage for volunteer")
+			var distance = pu.position.distance_to(closest_trash.position)
+			pu.position = pu.position.move_toward(closest_trash.position, delta * pu.speed)
+			pu.move_and_slide()
+			if distance < 10:
+				closest_trash.get_picked_up()

@@ -22,5 +22,8 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, _shape_idx: int)
 	if event is InputEventMouseButton:
 		if Input.is_action_just_pressed('action'):
 			viewport.get_viewport().set_input_as_handled()
-			picked_up.emit(self)
-			queue_free()
+			get_picked_up()
+
+func get_picked_up() -> void:
+	picked_up.emit(self)
+	queue_free()
