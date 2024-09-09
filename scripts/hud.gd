@@ -19,5 +19,5 @@ func storm_warning() -> void:
 	storm_warning_icon.start_storm_warning()
 
 func _on_volunteer_pressed() -> void:
-	print("volunteer purchased")
+	#print("volunteer purchased")
 	AccountManager.debit_account()

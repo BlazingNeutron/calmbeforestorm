@@ -3,7 +3,7 @@ extends Node
 signal _on_money_changed(money)
 signal purchase_volunteer
 
-@export var starting_money : 	int = 100
+@export var starting_money : int = 100
 var money : int = 0
 
 func _ready() -> void:

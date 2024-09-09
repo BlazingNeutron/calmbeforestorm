@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckuci21pceagf"]
+
+[ext_resource type="PackedScene" uid="uid://dr2cu7ky4p2pn" path="res://scenes/waste/waste.tscn" id="1_wess6"]
+[ext_resource type="Texture2D" uid="uid://17ngmdwq35jj" path="res://assets/waste-bottle.png" id="2_hjma6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fd1xd"]
+size = Vector2(31, 51)
+
+[node name="waste" instance=ExtResource("1_wess6")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_hjma6")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-0.5, -2.5)
+shape = SubResource("RectangleShape2D_fd1xd")

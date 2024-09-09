@@ -7,6 +7,6 @@ func _ready() -> void:
 	storm_timer.start()
 
 func _on_storm_timer_timeout() -> void:
-	print("Storm warning timer")
+	#print("Storm warning timer")
 	hud.storm_warning()
 	storm_timer.stop()
