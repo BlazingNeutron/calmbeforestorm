@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b10cl55tii0or"]
+
+[ext_resource type="Texture2D" uid="uid://b7afklt61mrcl" path="res://assets/volunteer1.png" id="1_b8wkd"]
+[ext_resource type="Script" path="res://scripts/picker_upper.gd" id="1_dprcd"]
+
+[node name="PickerUpper" type="Node2D"]
+script = ExtResource("1_dprcd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_b8wkd")
