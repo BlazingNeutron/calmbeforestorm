@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://jeovohtmmp0a"]
+
+[ext_resource type="Script" path="res://scripts/lightning.gd" id="1_bnmic"]
+[ext_resource type="Texture2D" uid="uid://onosdrnldavq" path="res://assets/white-lightning.png" id="1_s3nqo"]
+
+[node name="lightning" type="CanvasLayer"]
+script = ExtResource("1_bnmic")
+
+[node name="flash_sprite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(576.25, 322.75)
+scale = Vector2(1153.5, 646.5)
+texture = ExtResource("1_s3nqo")

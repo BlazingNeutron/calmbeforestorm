@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3y2w6dk2qoel"]
+[gd_scene load_steps=4 format=3 uid="uid://d3y2w6dk2qoel"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_v6bi3"]
 [ext_resource type="PackedScene" uid="uid://dr0tbgd0iim3e" path="res://scenes/store.tscn" id="3_11lxo"]
+[ext_resource type="PackedScene" uid="uid://jeovohtmmp0a" path="res://scenes/lightning.tscn" id="3_cy3ty"]
 
 [node name="hud" type="CanvasLayer"]
 script = ExtResource("1_v6bi3")
 
+[node name="lightning" parent="." instance=ExtResource("3_cy3ty")]
+
 [node name="store" parent="." instance=ExtResource("3_11lxo")]
+script = null
