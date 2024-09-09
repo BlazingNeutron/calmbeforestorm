@@ -20,10 +20,11 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, _shape_idx: int)
 	if event is InputEventMouseButton:
 		if Input.is_action_just_pressed('action'):
 			viewport.get_viewport().set_input_as_handled()
-			get_picked_up()
+			get_picked_up(true)
 
-func get_picked_up() -> void:
-	pick_up_sound.play()
+func get_picked_up(play_sound : bool = false) -> void:
+	if play_sound:
+		pick_up_sound.play()
 	self.hide()
 	picked_up.emit(self)
 

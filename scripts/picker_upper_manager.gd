@@ -40,6 +40,8 @@ func _process(delta: float) -> void:
 		var closest_trash = null
 		if pu.is_beach_bound:
 			for trash in beach_trash_array:
+				if trash == null:
+					continue
 				var trash_pos = trash.global_position
 				var distance = current_pu_position.distance_to(trash_pos)
 				if distance < shortest_distance:
@@ -63,7 +65,7 @@ func _process(delta: float) -> void:
 				closest_trash.get_picked_up()
 
 func adopt_picker_upper() -> void:
-	#print("adding volunteer")
+	#print("adding picker upper")
 	var new_picker_upper = volunteer_object.instantiate()
 	new_picker_upper.position = new_picker_upper.spawn_position()
 	picker_uppers_container.add_child(new_picker_upper)
