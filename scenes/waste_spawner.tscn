@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://bfka3w6b3sayd"]
+[gd_scene load_steps=2 format=3 uid="uid://bfka3w6b3sayd"]
+
+[ext_resource type="Script" path="res://scripts/waste_spawner.gd" id="1_7t5dp"]
 
 [node name="WasteSpawner" type="Node2D"]
+script = ExtResource("1_7t5dp")
