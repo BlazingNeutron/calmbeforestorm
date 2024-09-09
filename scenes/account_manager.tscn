@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqh0hfnywqk44"]
+
+[ext_resource type="Script" path="res://scripts/account_manager.gd" id="1_obtx7"]
+
+[node name="AccountManager" type="Node"]
+script = ExtResource("1_obtx7")

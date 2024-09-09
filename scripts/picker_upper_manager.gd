@@ -1,10 +1,15 @@
 extends Node2D
 
-signal update_money
+@onready var picker_uppers_container: Node2D = %PickerUppersContainer
+
+var volunteer_object = load("res://scenes/picker_upper.tscn")
 
 var trash_array : Array = []
 var beach_trash_array : Array = []
 var picker_upper_array : Array = []
+
+func _ready() -> void:
+	AccountManager.purchase_volunteer.connect(adopt_picker_upper)
 
 func _on_waste_spawner_spawned_trash(new_trash) -> void:
 	#print("spawned trash ", new_trash.position.x)
@@ -25,11 +30,7 @@ func _on_trash_picked_up(removed_trash) -> void:
 	if beach_trash_index > -1:
 		#print("beach trash removed")
 		beach_trash_array.remove_at(beach_trash_index)
-	update_money.emit()
-
-func _on_picker_upper_adopted(picker_upper) -> void:
-	#	print("picker upper added", picker_upper)
-	picker_upper_array.push_front(picker_upper)
+	AccountManager.credit_account()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -45,6 +46,14 @@ func _process(delta: float) -> void:
 					#print("found a close beach garbage for volunteer", trash.position)
 					shortest_distance = distance
 					closest_trash = trash
+		else:
+			for trash in trash_array:
+				var trash_pos = trash.global_position
+				var distance = current_pu_position.distance_to(trash_pos)
+				if distance < shortest_distance:
+					#print("found a close beach garbage for volunteer", trash.position)
+					shortest_distance = distance
+					closest_trash = trash
 		if closest_trash != null:
 			#print("found beach garbage for volunteer")
 			var distance = pu.position.distance_to(closest_trash.position)
@@ -52,4 +61,10 @@ func _process(delta: float) -> void:
 			pu.move_and_slide()
 			if distance < 10:
 				closest_trash.get_picked_up()
-				update_money.emit()
+
+func adopt_picker_upper() -> void:
+	#print("adding volunteer")
+	var new_picker_upper = volunteer_object.instantiate()
+	new_picker_upper.position = new_picker_upper.spawn_position()
+	picker_uppers_container.add_child(new_picker_upper)
+	picker_upper_array.push_front(new_picker_upper)

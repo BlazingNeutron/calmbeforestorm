@@ -29,4 +29,5 @@ offset_bottom = 40.0
 text = "$100"
 
 [node name="StormWarning" parent="." instance=ExtResource("3_e5k40")]
-visible = true
+
+[connection signal="pressed" from="StoreContainer/Volunteer" to="." method="_on_volunteer_pressed"]
