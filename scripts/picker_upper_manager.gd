@@ -1,5 +1,7 @@
 extends Node2D
 
+signal update_money
+
 var trash_array : Array = []
 var beach_trash_array : Array = []
 var picker_upper_array : Array = []
@@ -11,7 +13,7 @@ func _on_waste_spawner_spawned_trash(new_trash) -> void:
 	trash_array.push_front(new_trash)
 
 func _on_trash_landed(new_beach_trash) -> void:
-	print("Trash landed", position)
+	#print("Trash landed", position)
 	beach_trash_array.push_front(new_beach_trash)
 
 func _on_trash_picked_up(removed_trash) -> void:
@@ -21,11 +23,12 @@ func _on_trash_picked_up(removed_trash) -> void:
 		trash_array.remove_at(trash_index)
 	var beach_trash_index = beach_trash_array.find(removed_trash)
 	if beach_trash_index > -1:
-		print("beach trash removed")
+		#print("beach trash removed")
 		beach_trash_array.remove_at(beach_trash_index)
+	update_money.emit()
 
 func _on_picker_upper_adopted(picker_upper) -> void:
-	#print("picker upper added", picker_upper)
+	#	print("picker upper added", picker_upper)
 	picker_upper_array.push_front(picker_upper)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,3 +52,4 @@ func _process(delta: float) -> void:
 			pu.move_and_slide()
 			if distance < 10:
 				closest_trash.get_picked_up()
+				update_money.emit()

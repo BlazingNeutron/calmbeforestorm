@@ -49,6 +49,7 @@ tile_set = SubResource("TileSet_k6gmy")
 [node name="PickerUppers" type="Node2D" parent="."]
 
 [node name="PickerUpperManager" parent="PickerUppers" instance=ExtResource("3_jhrrb")]
+unique_name_in_owner = true
 
 [node name="PickerUpper" parent="PickerUppers" instance=ExtResource("4_pk4d3")]
 position = Vector2(-421, 261)
