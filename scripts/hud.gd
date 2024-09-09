@@ -1,11 +1,14 @@
 extends CanvasLayer
 
 @onready var lightning: CanvasLayer = $lightning
-@onready var money_label: RichTextLabel = %Money
+@onready var money_label: Label = %Money
 @onready var storm_warning_icon: Node = $StormWarning
+@onready var transgressions_meter: Label = %TransgressionsMeter
 
 func _ready() -> void:
 	AccountManager._on_money_changed.connect(update_money)
+	AccountManager.transgression_changed.connect(update_transgressions)
+	AccountManager.initialize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -14,6 +17,9 @@ func _process(_delta: float) -> void:
 
 func update_money(money : int) -> void:
 	money_label.text = "$" + str(money)
+
+func update_transgressions(count : int) -> void:
+	transgressions_meter.text = str(count)
 
 func storm_warning() -> void:
 	storm_warning_icon.start_storm_warning()
