@@ -7,7 +7,6 @@
 script = ExtResource("1_v6bi3")
 
 [node name="lightning" parent="." instance=ExtResource("3_cy3ty")]
-visible = false
 
 [node name="StoreContainer" type="VBoxContainer" parent="."]
 anchors_preset = 11

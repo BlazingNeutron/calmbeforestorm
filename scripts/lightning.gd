@@ -2,9 +2,6 @@ extends CanvasLayer
 
 @onready var flash_sprite: Sprite2D = $flash_sprite
 
-var strength = 10
-var speed = 10
-
 func lightning_strike() -> void:
 	print("lightning")
 	var tween = get_tree().create_tween()
