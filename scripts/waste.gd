@@ -8,12 +8,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.y += delta * SPEED
-	if position.y > 1500:
-		queue_free()
-	
+	if position.y < 200:
+		position.y += delta * SPEED
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if Input.is_action_just_pressed('action'):
+			viewport.get_viewport().set_input_as_handled()
 			queue_free()
