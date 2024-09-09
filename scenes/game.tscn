@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=4 uid="uid://iagjcdoeawtf"]
+[gd_scene load_steps=13 format=4 uid="uid://iagjcdoeawtf"]
 
 [ext_resource type="Texture2D" uid="uid://b47n3opsae4wi" path="res://assets/water1.png" id="1_lgff2"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_p5c5y"]
 [ext_resource type="Texture2D" uid="uid://set11erdhkfk" path="res://assets/sand1.png" id="2_wjy4f"]
 [ext_resource type="PackedScene" uid="uid://bfka3w6b3sayd" path="res://scenes/waste_spawner.tscn" id="3_44yya"]
 [ext_resource type="PackedScene" uid="uid://c0luf734cnh5g" path="res://scenes/picker_upper_manager.tscn" id="3_jhrrb"]
@@ -30,8 +31,10 @@ sources/1 = SubResource("TileSetAtlasSource_in0rl")
 sources/2 = SubResource("TileSetAtlasSource_npesy")
 
 [node name="game" type="Node2D"]
+script = ExtResource("1_p5c5y")
 
 [node name="hud" parent="." instance=ExtResource("4_ef12f")]
+unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -54,4 +57,8 @@ unique_name_in_owner = true
 [node name="PickerUpper" parent="PickerUppers" instance=ExtResource("4_pk4d3")]
 position = Vector2(-421, 261)
 
+[node name="StormTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="spawned_trash" from="Waste/WasteSpawner" to="PickerUppers/PickerUpperManager" method="_on_waste_spawner_spawned_trash"]
+[connection signal="timeout" from="StormTimer" to="." method="_on_storm_timer_timeout"]

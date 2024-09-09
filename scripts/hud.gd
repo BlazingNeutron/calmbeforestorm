@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var lightning: CanvasLayer = $lightning
 @onready var money_label: RichTextLabel = %Money
 @onready var picker_upper_manager: Node2D = %PickerUpperManager
+@onready var storm_warning_icon: Node = $StormWarning
 
 @export var starting_money : int = 100
 var money : int = 0
@@ -19,3 +20,6 @@ func _process(_delta: float) -> void:
 func _on_update_money() -> void:
 	money += 5
 	money_label.text = "$" + str(money)
+
+func storm_warning() -> void:
+	storm_warning_icon.start_storm_warning()

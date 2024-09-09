@@ -3,12 +3,10 @@ extends Node2D
 signal landed(trash)
 signal picked_up(trash)
 
+@onready var pick_up_sound: AudioStreamPlayer = $PickUpSound
+
 @export var SPEED : int = 100
 var has_landed : bool = false
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -25,5 +23,9 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, _shape_idx: int)
 			get_picked_up()
 
 func get_picked_up() -> void:
+	pick_up_sound.play()
+	self.hide()
 	picked_up.emit(self)
+
+func _on_pick_up_sound_finished() -> void:
 	queue_free()
