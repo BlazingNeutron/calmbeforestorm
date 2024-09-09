@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bfka3w6b3sayd"]
+
+[node name="WasteSpawner" type="Node2D"]

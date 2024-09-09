@@ -4,15 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://dflg5y7s5rs33" path="res://assets/waste-scrap1.png" id="1_r22q1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m7fq2"]
-radius = 7.07107
+radius = 18.0278
 
 [node name="waste" type="Node2D"]
 script = ExtResource("1_6ryxd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+scale = Vector2(2, 2)
 texture = ExtResource("1_r22q1")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_m7fq2")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

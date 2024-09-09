@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=4 uid="uid://iagjcdoeawtf"]
+[gd_scene load_steps=9 format=4 uid="uid://iagjcdoeawtf"]
 
 [ext_resource type="Texture2D" uid="uid://b47n3opsae4wi" path="res://assets/water1.png" id="1_lgff2"]
 [ext_resource type="Texture2D" uid="uid://set11erdhkfk" path="res://assets/sand1.png" id="2_wjy4f"]
+[ext_resource type="PackedScene" uid="uid://bfka3w6b3sayd" path="res://scenes/waste_spawner.tscn" id="3_44yya"]
 [ext_resource type="PackedScene" uid="uid://dr2cu7ky4p2pn" path="res://scenes/waste.tscn" id="3_hidvn"]
 [ext_resource type="PackedScene" uid="uid://d3y2w6dk2qoel" path="res://scenes/hud.tscn" id="4_ef12f"]
 
@@ -27,6 +28,8 @@ sources/1 = SubResource("TileSetAtlasSource_in0rl")
 [node name="waste" type="Node2D" parent="."]
 
 [node name="waste" parent="waste" instance=ExtResource("3_hidvn")]
+
+[node name="WasteSpawner" parent="waste" instance=ExtResource("3_44yya")]
 
 [node name="tiles" type="Node2D" parent="."]
 

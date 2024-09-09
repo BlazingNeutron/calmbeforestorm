@@ -11,3 +11,9 @@ func _process(delta: float) -> void:
 	position.y += delta * SPEED
 	if position.y > 1500:
 		queue_free()
+	
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if Input.is_action_just_pressed('action'):
+			queue_free()
