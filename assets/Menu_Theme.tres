@@ -1,0 +1,10 @@
+[gd_resource type="Theme" format=3 uid="uid://dh1v3rke5y04p"]
+
+[resource]
+Button/colors/font_focus_color = Color(0, 0.705882, 0.847059, 1)
+Button/colors/font_hover_color = Color(0, 0.705882, 0.847059, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0.667385, 0.957389, 1)
+Button/colors/font_pressed_color = Color(0, 0.666667, 0.956863, 1)
+RichTextLabel/colors/default_color = Color(0, 0.705882, 0.847059, 1)
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/font_sizes/normal_font_size = 28

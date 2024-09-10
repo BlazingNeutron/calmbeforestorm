@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsf416lrgrmld"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_hvyrn"]
+[ext_resource type="Theme" uid="uid://dh1v3rke5y04p" path="res://assets/Menu_Theme.tres" id="2_c2dds"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("1_hvyrn")
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -145.0
+offset_top = -150.0
+offset_right = 145.0
+offset_bottom = 250.0
+theme = ExtResource("2_c2dds")
+bbcode_enabled = true
+text = "Tidal Trash Taskforce"
+fit_content = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -93.0
+offset_right = 49.5
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_c2dds")
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_bottom = NodePath("../Exit")
+theme = ExtResource("2_c2dds")
+text = "Start"
+
+[node name="High Scores" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_c2dds")
+disabled = true
+text = "High Scores
+"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_c2dds")
+disabled = true
+text = "Options"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Start")
+focus_neighbor_bottom = NodePath("../Start")
+theme = ExtResource("2_c2dds")
+text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
