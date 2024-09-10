@@ -4,11 +4,12 @@ extends CanvasLayer
 @onready var money_label: Label = %Money
 @onready var storm_warning_icon: Node = $StormWarning
 @onready var transgressions_meter: Label = %TransgressionsMeter
+@onready var staff_button: Button = $StorePanel/StoreContainer/Staff
 
 func _ready() -> void:
 	AccountManager._on_money_changed.connect(update_money)
 	AccountManager.transgression_changed.connect(update_transgressions)
-	AccountManager.initialize()
+	update_money(AccountManager.money)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -17,6 +18,7 @@ func _process(_delta: float) -> void:
 
 func update_money(money : int) -> void:
 	money_label.text = "$" + str(money)
+	staff_button.disabled = (money < 50)
 
 func update_transgressions(count : int) -> void:
 	transgressions_meter.text = str(count)

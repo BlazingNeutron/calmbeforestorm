@@ -20,14 +20,17 @@ func _on_waste_spawner_spawned_trash(new_trash) -> void:
 func _on_trash_landed(new_beach_trash) -> void:
 	#print("Trash landed", position)
 	beach_trash_array.push_front(new_beach_trash)
-	new_beach_trash.move_to_beach_frame()
 	AccountManager.update_trangressions(beach_trash_array.size())
 
 func _on_trash_picked_up(removed_trash) -> void:
+	#print("a trash was picked up")
+	if removed_trash.picker_upper != null:
+		removed_trash.picker_upper.assigned = false
 	var trash_index = trash_array.find(removed_trash)
 	if trash_index > -1:
 		#print("trash removed")
 		trash_array.remove_at(trash_index)
+	
 	var beach_trash_index = beach_trash_array.find(removed_trash)
 	if beach_trash_index > -1:
 		#print("beach trash removed")
@@ -36,36 +39,34 @@ func _on_trash_picked_up(removed_trash) -> void:
 	AccountManager.update_trangressions(beach_trash_array.size())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	for pu in picker_upper_array:
-		var current_pu_position = pu.global_position
-		var shortest_distance = 10000
 		var closest_trash = null
-		if pu.is_beach_bound:
-			for trash in beach_trash_array:
-				if trash == null:
-					continue
-				var trash_pos = trash.global_position
-				var distance = current_pu_position.distance_to(trash_pos)
-				if distance < shortest_distance:
-					#print("found a close beach garbage for volunteer", trash.position)
-					shortest_distance = distance
-					closest_trash = trash
-		else:
-			for trash in trash_array:
-				var trash_pos = trash.global_position
-				var distance = current_pu_position.distance_to(trash_pos)
-				if distance < shortest_distance:
-					#print("found a close beach garbage for volunteer", trash.position)
-					shortest_distance = distance
-					closest_trash = trash
+		#print("evaluating trash")
+		if pu.assigned == false:
+			if pu.is_beach_bound:
+				closest_trash = search_for_beach_trash(pu)
 		if closest_trash != null:
 			#print("found beach garbage for volunteer")
-			var distance = pu.position.distance_to(closest_trash.position)
-			pu.position = pu.position.move_toward(closest_trash.position, delta * pu.speed)
-			pu.move_and_slide()
-			if distance < 10:
-				closest_trash.get_picked_up()
+			pu.assign_trash(closest_trash)
+			closest_trash.claimed = true
+			closest_trash.picker_upper = pu
+
+func search_for_beach_trash(pu : Node2D) -> Node2D:
+	var current_pu_position = pu.global_position
+	var shortest_distance = 10000
+	var closest_trash = null
+	for trash in beach_trash_array:
+		#print("Look at this mess")
+		if trash == null or trash.claimed == true:
+			continue
+		var trash_pos = trash.global_position
+		var distance = current_pu_position.distance_to(trash_pos)
+		if distance < shortest_distance:
+			#print("found a close beach garbage for volunteer", trash.position)
+			shortest_distance = distance
+			closest_trash = trash
+	return closest_trash
 
 func adopt_picker_upper() -> void:
 	#print("adding picker upper")

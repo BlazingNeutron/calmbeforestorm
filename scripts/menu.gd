@@ -4,10 +4,6 @@ extends Control
 func _ready() -> void:
 	$VBoxContainer/Start.grab_focus()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 

@@ -12,15 +12,12 @@ var transgressions : int = 10
 func _ready() -> void:
 	money = starting_money
 
-func initialize() -> void:
-	_on_money_changed.emit(money)
-
 func credit_account() -> void:
 	money += 5
 	_on_money_changed.emit(money)
 
 func debit_account() -> void:
-	money -= 100
+	money -= 50
 	_on_money_changed.emit(money)
 	purchase_volunteer.emit()
 
