@@ -8,9 +8,13 @@ script = ExtResource("1_dprcd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0
 autoplay = true
 bus = &"SFX"
+
+[node name="PickupTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="PickupTimer" to="." method="_on_pickup_timer_timeout"]
