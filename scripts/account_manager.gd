@@ -1,10 +1,10 @@
 extends Node
 
 signal _on_money_changed(money)
-signal purchase_volunteer
+signal purchase_staff
 signal transgression_changed(transgressions)
 
-@export var starting_money : int = 0
+@export var starting_money : int = 200
 @export var max_transgressions : int = 10
 var money : int = 0
 var transgressions : int = 10
@@ -19,7 +19,7 @@ func credit_account() -> void:
 func debit_account() -> void:
 	money -= 50
 	_on_money_changed.emit(money)
-	purchase_volunteer.emit()
+	purchase_staff.emit()
 
 func update_trangressions(count : int) -> void:
 	#print("updating transgressions")

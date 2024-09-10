@@ -11,6 +11,7 @@ signal picked_up(trash)
 var has_landed : bool = false
 var claimed : bool = false
 var picker_upper : Node2D = null
+var picking_up : bool = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -25,7 +26,9 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, _shape_idx: int)
 	if event is InputEventMouseButton:
 		if Input.is_action_just_pressed('action'):
 			viewport.get_viewport().set_input_as_handled()
-			get_picked_up(true)
+			if not picking_up:
+				picking_up = true
+				get_picked_up(true)
 
 func get_picked_up(play_sound : bool = false) -> void:
 	sprite.hide()

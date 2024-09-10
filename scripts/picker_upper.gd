@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
 @export var speed : int = 70
 @export var is_beach_bound : bool = true
 @export var capacity = 0
@@ -23,3 +25,7 @@ func spawn_position() -> Vector2:
 func assign_trash(new_trash : Node2D) -> void:
 	trash = new_trash
 	assigned = true
+
+func start_sound(count : int) -> void:
+	if count <= 1:
+		audio_stream_player.play()

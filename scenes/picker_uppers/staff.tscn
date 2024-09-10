@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhtu5chpwcraj"]
+
+[ext_resource type="PackedScene" uid="uid://b10cl55tii0or" path="res://scenes/picker_uppers/picker_upper.tscn" id="1_k6qb4"]
+[ext_resource type="Texture2D" uid="uid://b7afklt61mrcl" path="res://assets/sprites/volunteer1.png" id="2_3gxk2"]
+[ext_resource type="AudioStream" uid="uid://cckex47jyoq5l" path="res://assets/audio/strange-creature-talks-96872.mp3" id="3_yyda3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_254wm"]
+size = Vector2(28, 40)
+
+[node name="PickerUpper" instance=ExtResource("1_k6qb4")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_254wm")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_3gxk2")
+
+[node name="AudioStreamPlayer" parent="." index="2"]
+stream = ExtResource("3_yyda3")
+volume_db = -15.0
+pitch_scale = 1.5
+autoplay = false
+parameters/looping = true

@@ -96,4 +96,4 @@ text = "10"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[connection signal="pressed" from="StorePanel/StoreContainer/Staff" to="." method="_on_volunteer_pressed"]
+[connection signal="pressed" from="StorePanel/StoreContainer/Staff" to="." method="_on_staff_pressed"]

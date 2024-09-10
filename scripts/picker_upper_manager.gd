@@ -2,14 +2,14 @@ extends Node2D
 
 @onready var picker_uppers_container: Node2D = %PickerUppersContainer
 
-var volunteer_object = load("res://scenes/picker_upper.tscn")
+var staff_object = load("res://scenes/picker_uppers/staff.tscn")
 
 var trash_array : Array = []
 var beach_trash_array : Array = []
 var picker_upper_array : Array = []
 
 func _ready() -> void:
-	AccountManager.purchase_volunteer.connect(adopt_picker_upper)
+	AccountManager.purchase_staff.connect(adopt_picker_upper)
 
 func _on_waste_spawner_spawned_trash(new_trash) -> void:
 	#print("spawned trash ", new_trash.position.x)
@@ -40,6 +40,8 @@ func _on_trash_picked_up(removed_trash) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	randomize()
+	picker_upper_array.shuffle()
 	for pu in picker_upper_array:
 		var closest_trash = null
 		#print("evaluating trash")
@@ -47,7 +49,7 @@ func _process(_delta: float) -> void:
 			if pu.is_beach_bound:
 				closest_trash = search_for_beach_trash(pu)
 		if closest_trash != null:
-			#print("found beach garbage for volunteer")
+			#print("found beach garbage for staff")
 			pu.assign_trash(closest_trash)
 			closest_trash.claimed = true
 			closest_trash.picker_upper = pu
@@ -63,14 +65,15 @@ func search_for_beach_trash(pu : Node2D) -> Node2D:
 		var trash_pos = trash.global_position
 		var distance = current_pu_position.distance_to(trash_pos)
 		if distance < shortest_distance:
-			#print("found a close beach garbage for volunteer", trash.position)
+			#print("found a close beach garbage for staff", trash.position)
 			shortest_distance = distance
 			closest_trash = trash
 	return closest_trash
 
 func adopt_picker_upper() -> void:
 	#print("adding picker upper")
-	var new_picker_upper = volunteer_object.instantiate()
+	var new_picker_upper = staff_object.instantiate()
 	new_picker_upper.position = new_picker_upper.spawn_position()
 	picker_uppers_container.add_child(new_picker_upper)
 	picker_upper_array.push_front(new_picker_upper)
+	new_picker_upper.start_sound(picker_upper_array.size())

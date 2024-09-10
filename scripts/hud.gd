@@ -26,6 +26,6 @@ func update_transgressions(count : int) -> void:
 func storm_warning() -> void:
 	storm_warning_icon.start_storm_warning()
 
-func _on_volunteer_pressed() -> void:
-	#print("volunteer purchased")
+func _on_staff_pressed() -> void:
+	#print("staff purchased")
 	AccountManager.debit_account()
