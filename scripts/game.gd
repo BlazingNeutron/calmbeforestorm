@@ -7,7 +7,7 @@ signal clear_weather
 @onready var next_storm_timer: Timer = %NextStormTimer
 @onready var storm_duration: Timer = $StormDuration
 
-@export var time_to_next_storm : int = 1
+@export var time_to_next_storm : int = 60
 @export var storm_duration_time : int = 30
 
 func _ready() -> void:

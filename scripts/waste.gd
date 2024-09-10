@@ -7,16 +7,22 @@ signal picked_up(trash)
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var poof: CPUParticles2D = $PoofAnimationParticles
 
-@export var SPEED : int = 100
+@export var SPEED : int = 40
 var has_landed : bool = false
 var claimed : bool = false
 var picker_upper : Node2D = null
 var picking_up : bool = false
 
+@export var frequency = 9
+@export var amplitude = 0.8
+var time = 0
+ 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if position.y < 230:
-		position.y += delta * SPEED
+		time += delta
+		var movement = cos(time*frequency)*amplitude
+		position.y += (SPEED * delta) + movement
 	elif has_landed == false and position.y > 200:
 		has_landed = true
 		move_to_beach_frame()
