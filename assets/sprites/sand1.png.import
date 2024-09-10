@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://onosdrnldavq"
-path="res://.godot/imported/white-lightning.png-1b4577c60d4b5d02e83b52c098a67779.ctex"
+uid="uid://set11erdhkfk"
+path="res://.godot/imported/sand1.png-de35d7ea18149e0995c03b2a9d5135e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/white-lightning.png"
-dest_files=["res://.godot/imported/white-lightning.png-1b4577c60d4b5d02e83b52c098a67779.ctex"]
+source_file="res://assets/sprites/sand1.png"
+dest_files=["res://.godot/imported/sand1.png-de35d7ea18149e0995c03b2a9d5135e1.ctex"]
 
 [params]
 

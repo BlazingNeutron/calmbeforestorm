@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://jeovohtmmp0a"]
 
 [ext_resource type="Script" path="res://scripts/lightning.gd" id="1_bnmic"]
-[ext_resource type="Texture2D" uid="uid://onosdrnldavq" path="res://assets/white-lightning.png" id="1_s3nqo"]
+[ext_resource type="Texture2D" uid="uid://onosdrnldavq" path="res://assets/sprites/white-lightning.png" id="1_s3nqo"]
 
 [node name="lightning" type="CanvasLayer"]
 script = ExtResource("1_bnmic")

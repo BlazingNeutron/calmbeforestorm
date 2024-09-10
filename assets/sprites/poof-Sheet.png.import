@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dflg5y7s5rs33"
-path="res://.godot/imported/waste-scrap1.png-68898fe6eff1af7949e88c95323c922c.ctex"
+uid="uid://djybfgt77i2tt"
+path="res://.godot/imported/poof-Sheet.png-abe415a482f82f92c7016daad46ea00a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/waste-scrap1.png"
-dest_files=["res://.godot/imported/waste-scrap1.png-68898fe6eff1af7949e88c95323c922c.ctex"]
+source_file="res://assets/sprites/poof-Sheet.png"
+dest_files=["res://.godot/imported/poof-Sheet.png-abe415a482f82f92c7016daad46ea00a.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://17ngmdwq35jj"
-path="res://.godot/imported/waste-bottle.png-b3c9faa2eab246c444414cc8a487d177.ctex"
+uid="uid://onosdrnldavq"
+path="res://.godot/imported/white-lightning.png-adcecf071b07db235844845fbe5971d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/waste-bottle.png"
-dest_files=["res://.godot/imported/waste-bottle.png-b3c9faa2eab246c444414cc8a487d177.ctex"]
+source_file="res://assets/sprites/white-lightning.png"
+dest_files=["res://.godot/imported/white-lightning.png-adcecf071b07db235844845fbe5971d4.ctex"]
 
 [params]
 

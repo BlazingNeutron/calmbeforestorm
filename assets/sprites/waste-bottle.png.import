@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7afklt61mrcl"
-path="res://.godot/imported/volunteer1.png-a4c2115b575c6ac1f3aa140b9e1051e4.ctex"
+uid="uid://17ngmdwq35jj"
+path="res://.godot/imported/waste-bottle.png-39fa9fcdb2f5cbb39b9705e9b632ee1e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/volunteer1.png"
-dest_files=["res://.godot/imported/volunteer1.png-a4c2115b575c6ac1f3aa140b9e1051e4.ctex"]
+source_file="res://assets/sprites/waste-bottle.png"
+dest_files=["res://.godot/imported/waste-bottle.png-39fa9fcdb2f5cbb39b9705e9b632ee1e.ctex"]
 
 [params]
 

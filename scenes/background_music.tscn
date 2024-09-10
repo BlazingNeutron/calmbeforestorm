@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0dlktmiep01t"]
 
-[ext_resource type="AudioStream" uid="uid://dx7od2swe5ubv" path="res://assets/gentle-ocean-waves-birdsong-and-gull-7109.mp3" id="1_ronxa"]
-[ext_resource type="AudioStream" uid="uid://cb4niewv4lobs" path="res://assets/cottagecore-17463.mp3" id="2_phf5r"]
+[ext_resource type="AudioStream" uid="uid://dx7od2swe5ubv" path="res://assets/audio/gentle-ocean-waves-birdsong-and-gull-7109.mp3" id="1_ronxa"]
+[ext_resource type="AudioStream" uid="uid://cb4niewv4lobs" path="res://assets/audio/cottagecore-17463.mp3" id="2_phf5r"]
 
 [node name="BackgroundMusic" type="Node"]
 

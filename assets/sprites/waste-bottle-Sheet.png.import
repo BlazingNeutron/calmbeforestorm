@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://set11erdhkfk"
-path="res://.godot/imported/sand1.png-9f72ccaf43d3c732249b3de2f0fc6c20.ctex"
+uid="uid://dc4402nqccesg"
+path="res://.godot/imported/waste-bottle-Sheet.png-461e2540f3e284b664e90a94696cb64b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sand1.png"
-dest_files=["res://.godot/imported/sand1.png-9f72ccaf43d3c732249b3de2f0fc6c20.ctex"]
+source_file="res://assets/sprites/waste-bottle-Sheet.png"
+dest_files=["res://.godot/imported/waste-bottle-Sheet.png-461e2540f3e284b664e90a94696cb64b.ctex"]
 
 [params]
 

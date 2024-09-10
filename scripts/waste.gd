@@ -4,6 +4,8 @@ signal landed(trash)
 signal picked_up(trash)
 
 @onready var pick_up_sound: AudioStreamPlayer = $PickUpSound
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var poof: CPUParticles2D = $PoofAnimationParticles
 
 @export var SPEED : int = 100
 var has_landed : bool = false
@@ -23,10 +25,16 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, _shape_idx: int)
 			get_picked_up(true)
 
 func get_picked_up(play_sound : bool = false) -> void:
+	sprite.hide()
+	poof.emitting = true
+	poof.restart()
 	if play_sound:
 		pick_up_sound.play()
-	self.hide()
+	
 	picked_up.emit(self)
 
 func _on_pick_up_sound_finished() -> void:
 	queue_free()
+
+func move_to_beach_frame() -> void:
+	sprite.frame = 0

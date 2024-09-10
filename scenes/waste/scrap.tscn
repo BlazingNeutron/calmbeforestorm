@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://brhk6ttv86waw"]
 
 [ext_resource type="PackedScene" uid="uid://dr2cu7ky4p2pn" path="res://scenes/waste/waste.tscn" id="1_we7ra"]
-[ext_resource type="Texture2D" uid="uid://dflg5y7s5rs33" path="res://assets/waste-scrap1.png" id="2_3y0fq"]
+[ext_resource type="Texture2D" uid="uid://ck7k5qy3ga1ff" path="res://assets/sprites/waste-scrap1-Sheet.png" id="2_nlqwr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vd4s7"]
 radius = 20.0998
@@ -9,7 +9,9 @@ radius = 20.0998
 [node name="waste" instance=ExtResource("1_we7ra")]
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_3y0fq")
+texture = ExtResource("2_nlqwr")
+hframes = 2
+frame = 1
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_vd4s7")

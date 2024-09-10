@@ -11,7 +11,7 @@ var rng = RandomNumberGenerator.new()
 @export var spawn_timer = 2
 var timer = 0
 @export var min_x = -550
-@export var max_x = 350
+@export var max_x = 300
 @export var default_y = -400
 @onready var waste_container: Node2D = $".."
 
