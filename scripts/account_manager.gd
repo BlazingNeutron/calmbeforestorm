@@ -28,3 +28,8 @@ func update_trangressions(count : int) -> void:
 	#print("updating transgressions")
 	transgressions = max_transgressions - count
 	transgression_changed.emit(transgressions)
+	if transgressions <= 0:
+		game_over()
+
+func game_over() -> void:
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")

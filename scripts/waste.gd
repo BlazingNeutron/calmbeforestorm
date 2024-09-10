@@ -30,10 +30,9 @@ func get_picked_up(play_sound : bool = false) -> void:
 	poof.restart()
 	if play_sound:
 		pick_up_sound.play()
-	
-	picked_up.emit(self)
 
 func _on_pick_up_sound_finished() -> void:
+	picked_up.emit(self)
 	queue_free()
 
 func move_to_beach_frame() -> void:
