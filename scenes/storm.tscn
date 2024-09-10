@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://jeovohtmmp0a"]
+
+[ext_resource type="Script" path="res://scripts/storm.gd" id="1_kfjih"]
+[ext_resource type="Texture2D" uid="uid://onosdrnldavq" path="res://assets/sprites/white-lightning.png" id="2_uem3p"]
+[ext_resource type="AudioStream" uid="uid://dv8o8jmpn4w5g" path="res://assets/audio/loud-thunder-192165.mp3" id="3_a37ih"]
+
+[node name="storm" type="CanvasLayer"]
+script = ExtResource("1_kfjih")
+
+[node name="flash_sprite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(576.25, 322.75)
+scale = Vector2(1153.5, 646.5)
+texture = ExtResource("2_uem3p")
+
+[node name="thunder" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_a37ih")
+bus = &"SFX"
+
+[node name="PauseBetweenLightning" type="Timer" parent="."]
+wait_time = 6.0
+
+[node name="StormDimming" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.4)
+
+[connection signal="timeout" from="PauseBetweenLightning" to="." method="_on_pause_between_lightning_timeout"]

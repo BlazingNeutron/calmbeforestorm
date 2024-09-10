@@ -4,8 +4,3 @@
 
 [node name="WasteSpawner" type="Node2D"]
 script = ExtResource("1_7t5dp")
-
-[node name="StormDurationTimer" type="Timer" parent="."]
-wait_time = 30.0
-
-[connection signal="timeout" from="StormDurationTimer" to="." method="_on_storm_duration_timer_timeout"]

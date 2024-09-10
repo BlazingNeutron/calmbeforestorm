@@ -36,9 +36,18 @@ unique_name_in_owner = true
 [node name="PickerUpperManager" parent="PickerUppersContainer" instance=ExtResource("3_jhrrb")]
 unique_name_in_owner = true
 
-[node name="StormTimer" type="Timer" parent="."]
+[node name="NextStormTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 60.0
 
+[node name="StormDuration" type="Timer" parent="."]
+wait_time = 30.0
+
+[connection signal="clear_weather" from="." to="hud" method="_on_game_clear_weather"]
+[connection signal="clear_weather" from="." to="WasteContainer/WasteSpawner" method="_on_game_clear_weather"]
+[connection signal="storming" from="." to="hud" method="_on_game_storming"]
+[connection signal="storming" from="." to="WasteContainer/WasteSpawner" method="_on_game_storming"]
+[connection signal="warning" from="." to="hud" method="_on_storm_warning"]
+[connection signal="warning_completed" from="hud" to="." method="_on_hud_warning_completed"]
 [connection signal="spawned_trash" from="WasteContainer/WasteSpawner" to="PickerUppersContainer/PickerUpperManager" method="_on_waste_spawner_spawned_trash"]
-[connection signal="timeout" from="StormTimer" to="." method="_on_storm_timer_timeout"]
+[connection signal="timeout" from="NextStormTimer" to="." method="_on_storm_timer_timeout"]
+[connection signal="timeout" from="StormDuration" to="." method="_on_storm_duration_timeout"]

@@ -2,8 +2,6 @@ extends Node2D
 
 signal spawned_trash(new_trash)
 
-@onready var storm_duration_timer: Timer = $StormDurationTimer
-
 var scrap_object = load("res://scenes/waste/scrap.tscn")
 var bottle_object = load("res://scenes/waste/bottle.tscn")
 
@@ -42,9 +40,8 @@ func spawn_waste():
 	waste_container.add_child(new_waste)
 	spawned_trash.emit(new_waste)
 
-func start_storm() -> void:
-	storm_duration_timer.start()
+func _on_game_storming() -> void:
 	spawn_timer = 0.4
 
-func _on_storm_duration_timer_timeout() -> void:
+func _on_game_clear_weather() -> void:
 	spawn_timer = 2

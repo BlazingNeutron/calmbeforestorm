@@ -1,14 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://5hjrx53y7uu0"]
+[gd_scene load_steps=6 format=3 uid="uid://5hjrx53y7uu0"]
 
 [ext_resource type="Script" path="res://scripts/storm_warning.gd" id="1_106s2"]
 [ext_resource type="Texture2D" uid="uid://ecu6xgov3706" path="res://assets/sprites/warning-sign.png" id="1_er1jn"]
 [ext_resource type="AudioStream" uid="uid://bstd1fdn8ifwm" path="res://assets/audio/warning-sound-6686.mp3" id="3_vmc28"]
+[ext_resource type="Shader" path="res://scripts/hud.gdshader" id="4_tklub"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ytmw0"]
+shader = ExtResource("4_tklub")
+shader_parameter/alpha = 1.0
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 3.0
 
 [node name="StormWarning" type="Node"]
 script = ExtResource("1_106s2")
 
-[node name="StormWarningIcon" type="TextureRect" parent="."]
+[node name="PulsingWarning" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)
+z_index = -3
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="YellowVignette" type="ColorRect" parent="PulsingWarning"]
+material = SubResource("ShaderMaterial_ytmw0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(1, 0.882353, 0.141176, 1)
+
+[node name="StormWarningIcon" type="TextureRect" parent="PulsingWarning"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
