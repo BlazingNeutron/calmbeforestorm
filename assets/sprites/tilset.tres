@@ -1,0 +1,50 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dohcdu6rieggc"]
+
+[ext_resource type="Texture2D" uid="uid://bioegryg8ftf3" path="res://assets/sprites/shoreline1.png" id="2_vxfas"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ib502"]
+texture = ExtResource("2_vxfas")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_columns = 7
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 0.25
+0:0/animation_frame_2/duration = 0.25
+0:0/animation_frame_3/duration = 0.25
+0:0/animation_frame_4/duration = 0.25
+0:0/animation_frame_5/duration = 0.25
+0:0/animation_frame_6/duration = 0.25
+0:0/0 = 0
+0:1/animation_columns = 7
+0:1/animation_frame_0/duration = 1.0
+0:1/animation_frame_1/duration = 0.25
+0:1/animation_frame_2/duration = 0.25
+0:1/animation_frame_3/duration = 0.25
+0:1/animation_frame_4/duration = 0.25
+0:1/animation_frame_5/duration = 0.25
+0:1/animation_frame_6/duration = 0.25
+0:1/0 = 0
+0:2/animation_columns = 7
+0:2/animation_frame_0/duration = 1.0
+0:2/animation_frame_1/duration = 0.25
+0:2/animation_frame_2/duration = 0.25
+0:2/animation_frame_3/duration = 0.25
+0:2/animation_frame_4/duration = 0.25
+0:2/animation_frame_5/duration = 0.25
+0:2/animation_frame_6/duration = 0.25
+0:2/0 = 0
+0:3/animation_columns = 7
+0:3/animation_frame_0/duration = 1.0
+0:3/animation_frame_1/duration = 0.25
+0:3/animation_frame_2/duration = 0.25
+0:3/animation_frame_3/duration = 0.25
+0:3/animation_frame_4/duration = 0.25
+0:3/animation_frame_5/duration = 0.25
+0:3/animation_frame_6/duration = 0.25
+0:3/0 = 0
+0:4/0 = 0
+0:5/0 = 0
+0:6/0 = 0
+
+[resource]
+tile_size = Vector2i(32, 32)
+sources/5 = SubResource("TileSetAtlasSource_ib502")

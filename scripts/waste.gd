@@ -12,7 +12,7 @@ var has_landed : bool = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if position.y < 200:
+	if position.y < 230:
 		position.y += delta * SPEED
 	elif has_landed == false and position.y > 200:
 		has_landed = true
