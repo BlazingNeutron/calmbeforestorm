@@ -1,14 +1,6 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://dohcdu6rieggc"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dohcdu6rieggc"]
 
-[ext_resource type="Texture2D" uid="uid://bxi0n1f0j4tv5" path="res://assets/sprites/basic-tiles.png" id="1_l7by0"]
 [ext_resource type="Texture2D" uid="uid://bioegryg8ftf3" path="res://assets/sprites/shoreline1.png" id="2_vxfas"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f3ocp"]
-texture = ExtResource("1_l7by0")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-0:1/0 = 0
-0:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ib502"]
 texture = ExtResource("2_vxfas")
@@ -59,4 +51,3 @@ texture_region_size = Vector2i(32, 32)
 [resource]
 tile_size = Vector2i(32, 32)
 sources/5 = SubResource("TileSetAtlasSource_ib502")
-sources/1 = SubResource("TileSetAtlasSource_f3ocp")

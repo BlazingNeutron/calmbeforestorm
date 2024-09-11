@@ -4,7 +4,7 @@ signal landed(trash)
 signal picked_up(trash)
 
 @onready var pick_up_sound: AudioStreamPlayer = $PickUpSound
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $Sprite2D
 @onready var poof: CPUParticles2D = $PoofAnimationParticles
 
 @export var SPEED : int = 40
@@ -54,4 +54,4 @@ func clear_trash():
 	queue_free()
 
 func move_to_beach_frame() -> void:
-	sprite.frame = 0
+	sprite.play("landed")

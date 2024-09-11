@@ -1,7 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://brhk6ttv86waw"]
+[gd_scene load_steps=7 format=3 uid="uid://brhk6ttv86waw"]
 
 [ext_resource type="PackedScene" uid="uid://dr2cu7ky4p2pn" path="res://scenes/waste/waste.tscn" id="1_we7ra"]
 [ext_resource type="Texture2D" uid="uid://ck7k5qy3ga1ff" path="res://assets/sprites/waste-scrap1-Sheet.png" id="2_nlqwr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5n66g"]
+atlas = ExtResource("2_nlqwr")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2j3je"]
+atlas = ExtResource("2_nlqwr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1pbgw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5n66g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2j3je")
+}],
+"loop": true,
+"name": &"landed",
+"speed": 0.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vd4s7"]
 radius = 20.0998
@@ -9,9 +36,8 @@ radius = 20.0998
 [node name="waste" instance=ExtResource("1_we7ra")]
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_nlqwr")
-hframes = 2
-frame = 1
+sprite_frames = SubResource("SpriteFrames_1pbgw")
+autoplay = "default"
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_vd4s7")

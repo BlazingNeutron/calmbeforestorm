@@ -17,7 +17,7 @@ colors = PackedColorArray(1, 1, 1, 1, 0.945946, 0.945946, 0.945946, 1, 0.909804,
 [node name="waste" type="Node2D"]
 script = ExtResource("1_6ryxd")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -2)
 scale = Vector2(2, 2)
 
