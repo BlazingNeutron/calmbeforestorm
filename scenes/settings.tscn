@@ -1,0 +1,158 @@
+[gd_scene load_steps=12 format=3 uid="uid://cvfar7cmhhjgq"]
+
+[ext_resource type="Script" path="res://scripts/settings.gd" id="1_qlqq8"]
+[ext_resource type="AudioStream" uid="uid://bstd1fdn8ifwm" path="res://assets/audio/warning-sound-6686.mp3" id="2_b17qc"]
+[ext_resource type="Texture2D" uid="uid://bn82sh0iwhwmd" path="res://assets/sprites/speaker-options.png" id="2_wtedu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x7xsw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xc3wr"]
+atlas = ExtResource("2_wtedu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2w07b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrmny"]
+atlas = ExtResource("2_wtedu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ryvcv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cilju"]
+atlas = ExtResource("2_wtedu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l0neg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81dvh"]
+atlas = ExtResource("2_wtedu")
+region = Rect2(0, 0, 32, 32)
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchor_left = 0.25
+anchor_top = 0.33
+anchor_right = 0.75
+anchor_bottom = 0.67
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qlqq8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MasterVolumeControls" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MasterVolumeLabel" type="Label" parent="MarginContainer/VBoxContainer/MasterVolumeControls"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Master"
+
+[node name="MasterVolume" type="HSlider" parent="MarginContainer/VBoxContainer/MasterVolumeControls"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+
+[node name="MasterMuteCheckbox" type="CheckBox" parent="MarginContainer/VBoxContainer/MasterVolumeControls"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x7xsw")
+
+[node name="MasterMuteIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/MasterVolumeControls"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_xc3wr")
+
+[node name="OceanVolumeControls" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OceanVolumeLabel" type="Label" parent="MarginContainer/VBoxContainer/OceanVolumeControls"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Ocean"
+
+[node name="OceanVolume" type="HSlider" parent="MarginContainer/VBoxContainer/OceanVolumeControls"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+
+[node name="OceanMuteCheckbox" type="CheckBox" parent="MarginContainer/VBoxContainer/OceanVolumeControls"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2w07b")
+
+[node name="OceanMuteIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/OceanVolumeControls"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_qrmny")
+
+[node name="MusicVolumeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MusicVolumeLabel" type="Label" parent="MarginContainer/VBoxContainer/MusicVolumeContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Music"
+
+[node name="MusicVolume" type="HSlider" parent="MarginContainer/VBoxContainer/MusicVolumeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+
+[node name="MusicMuteCheckbox" type="CheckBox" parent="MarginContainer/VBoxContainer/MusicVolumeContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ryvcv")
+
+[node name="MusicMuteIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/MusicVolumeContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_cilju")
+
+[node name="SFXVolumeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SFXVolumeLabel" type="Label" parent="MarginContainer/VBoxContainer/SFXVolumeContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "SFX"
+
+[node name="SFXVolume" type="HSlider" parent="MarginContainer/VBoxContainer/SFXVolumeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+
+[node name="SFXMuteCheckbox" type="CheckBox" parent="MarginContainer/VBoxContainer/SFXVolumeContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l0neg")
+
+[node name="SFXMuteIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/SFXVolumeContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_81dvh")
+
+[node name="AudioTestPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_b17qc")
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/MasterVolumeControls/MasterVolume" to="." method="_on_master_volume_value_changed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/MasterVolumeControls/MasterMuteCheckbox" to="." method="_on_master_mute_checkbox_toggled"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/MasterVolumeControls/MasterMuteIcon" to="." method="_on_master_mute_icon_gui_input"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/OceanVolumeControls/OceanVolume" to="." method="_on_ocean_volume_value_changed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/OceanVolumeControls/OceanMuteCheckbox" to="." method="_on_ocean_mute_checkbox_toggled"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/OceanVolumeControls/OceanMuteIcon" to="." method="_on_ocean_mute_icon_gui_input"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/MusicVolumeContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/MusicVolumeContainer/MusicMuteCheckbox" to="." method="_on_music_mute_checkbox_toggled"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/MusicVolumeContainer/MusicMuteIcon" to="." method="_on_music_mute_icon_gui_input"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/SFXVolumeContainer/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/SFXVolumeContainer/SFXMuteCheckbox" to="." method="_on_sfx_mute_checkbox_toggled"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/SFXVolumeContainer/SFXMuteIcon" to="." method="_on_sfx_mute_icon_gui_input"]
