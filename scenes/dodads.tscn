@@ -1,0 +1,97 @@
+[gd_scene load_steps=13 format=3 uid="uid://dihxi10qb34q3"]
+
+[ext_resource type="Script" path="res://scripts/dodads.gd" id="1_hfdyh"]
+[ext_resource type="Texture2D" uid="uid://bioegryg8ftf3" path="res://assets/sprites/shoreline1.png" id="1_yox5r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cynp"]
+atlas = ExtResource("1_yox5r")
+region = Rect2(96, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqg7d"]
+atlas = ExtResource("1_yox5r")
+region = Rect2(128, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrul4"]
+atlas = ExtResource("1_yox5r")
+region = Rect2(160, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yiwqc"]
+atlas = ExtResource("1_yox5r")
+region = Rect2(192, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mikcd"]
+atlas = ExtResource("1_yox5r")
+region = Rect2(160, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6k3ip"]
+atlas = ExtResource("1_yox5r")
+region = Rect2(192, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vbi6"]
+atlas = ExtResource("1_yox5r")
+region = Rect2(160, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pd0f"]
+atlas = ExtResource("1_yox5r")
+region = Rect2(128, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31ayv"]
+atlas = ExtResource("1_yox5r")
+region = Rect2(96, 224, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7hglo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cynp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqg7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrul4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yiwqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mikcd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6k3ip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vbi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pd0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31ayv")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Dodads" type="Node2D"]
+script = ExtResource("1_hfdyh")
+
+[node name="CrabDodad" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_7hglo")
+frame = 10
+frame_progress = 1.0
+
+[node name="DodadTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="DodadTimer" to="." method="_on_dodad_timer_timeout"]
