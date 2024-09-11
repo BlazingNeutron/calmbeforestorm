@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://jn4so5ga8k8b"]
+
+[ext_resource type="PackedScene" uid="uid://b10cl55tii0or" path="res://scenes/picker_uppers/picker_upper.tscn" id="1_esetv"]
+[ext_resource type="Texture2D" uid="uid://fv0gs3bsowpc" path="res://assets/sprites/boat.png" id="2_7ijd3"]
+[ext_resource type="Script" path="res://scripts/boat.gd" id="2_ya3ju"]
+[ext_resource type="AudioStream" uid="uid://w4n834bkubgs" path="res://assets/audio/boat-horn-103003.mp3" id="4_rrgcq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i6gku"]
+radius = 46.0
+height = 157.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vqu5"]
+atlas = ExtResource("2_7ijd3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25mei"]
+atlas = ExtResource("2_7ijd3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg5hx"]
+atlas = ExtResource("2_7ijd3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aok3j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vqu5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25mei")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lg5hx")
+}],
+"loop": true,
+"name": &"pickup",
+"speed": 5.0
+}]
+
+[node name="PickerUpper" instance=ExtResource("1_esetv")]
+script = ExtResource("2_ya3ju")
+min_x = -550
+max_x = 300
+default_y = 0
+
+[node name="CollisionShape2D" parent="." index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_i6gku")
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(1, 0)
+scale = Vector2(-3, 3)
+sprite_frames = SubResource("SpriteFrames_aok3j")
+autoplay = "default"
+
+[node name="AudioStreamPlayer" parent="." index="2"]
+stream = ExtResource("4_rrgcq")
+volume_db = -15.0

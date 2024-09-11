@@ -3,7 +3,6 @@ extends Node2D
 signal warning
 signal storming
 signal clear_weather
-signal game_over
 
 @onready var next_storm_timer: Timer = %NextStormTimer
 @onready var storm_duration: Timer = $StormDuration

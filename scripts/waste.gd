@@ -37,6 +37,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, _shape_idx: int)
 				get_picked_up(true)
 
 func get_picked_up(play_sound : bool = false) -> void:
+	#print("trash got picked up")
 	sprite.hide()
 	poof.emitting = true
 	poof.restart()

@@ -47,6 +47,11 @@ layout_mode = 2
 disabled = true
 text = "Staff - $50"
 
+[node name="Boat" type="Button" parent="StorePanel/StoreContainer"]
+layout_mode = 2
+disabled = true
+text = "Boat - $250"
+
 [node name="TopPanel" type="Panel" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
@@ -102,3 +107,4 @@ vertical_alignment = 1
 visible = false
 
 [connection signal="pressed" from="StorePanel/StoreContainer/Staff" to="." method="_on_staff_pressed"]
+[connection signal="pressed" from="StorePanel/StoreContainer/Boat" to="." method="_on_boat_pressed"]

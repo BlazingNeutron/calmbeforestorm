@@ -16,5 +16,6 @@ autoplay = true
 bus = &"SFX"
 
 [node name="PickupTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="PickupTimer" to="." method="_on_pickup_timer_timeout"]

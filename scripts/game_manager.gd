@@ -1,14 +1,18 @@
 extends Node
 
 signal _on_money_changed(money)
-signal purchase_staff
+signal purchase_store_item(store_item_name)
 signal transgression_changed(transgressions)
 signal caution_transgressions
 signal warning_transgressions
 signal game_over
 
 @export var max_transgressions : int = 10
-@export var starting_money : int = 0
+@export var starting_money : int = 250
+@export var store_items = {
+	"staff" : { "cost": 50, "scene": preload("res://scenes/picker_uppers/staff.tscn") },
+	"boat" : { "cost": 250, "scene": preload("res://scenes/picker_uppers/boat.tscn") }
+}
 
 var money : int = 0
 var transgressions : int = 10
@@ -21,10 +25,10 @@ func credit_account() -> void:
 	money += 5
 	_on_money_changed.emit(money)
 
-func debit_account() -> void:
-	money -= 50
+func debit_account(item_name : String) -> void:
+	money -= GameManager.store_items.get(item_name).cost
 	_on_money_changed.emit(money)
-	purchase_staff.emit()
+	purchase_store_item.emit(item_name)
 
 func update_trangressions(count : int) -> void:
 	#print("updating transgressions")
