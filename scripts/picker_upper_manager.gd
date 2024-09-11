@@ -9,7 +9,7 @@ var beach_trash_array : Array = []
 var picker_upper_array : Array = []
 
 func _ready() -> void:
-	AccountManager.purchase_staff.connect(adopt_picker_upper)
+	GameManager.purchase_staff.connect(adopt_picker_upper)
 
 func _on_waste_spawner_spawned_trash(new_trash) -> void:
 	#print("spawned trash ", new_trash.position.x)
@@ -20,7 +20,7 @@ func _on_waste_spawner_spawned_trash(new_trash) -> void:
 func _on_trash_landed(new_beach_trash) -> void:
 	#print("Trash landed", position)
 	beach_trash_array.push_front(new_beach_trash)
-	AccountManager.update_trangressions(beach_trash_array.size())
+	GameManager.update_trangressions(beach_trash_array.size())
 
 func _on_trash_picked_up(removed_trash) -> void:
 	#print("a trash was picked up")
@@ -35,8 +35,8 @@ func _on_trash_picked_up(removed_trash) -> void:
 	if beach_trash_index > -1:
 		#print("beach trash removed")
 		beach_trash_array.remove_at(beach_trash_index)
-	AccountManager.credit_account()
-	AccountManager.update_trangressions(beach_trash_array.size())
+	GameManager.credit_account()
+	GameManager.update_trangressions(beach_trash_array.size())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

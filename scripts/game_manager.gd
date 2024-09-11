@@ -3,14 +3,19 @@ extends Node
 signal _on_money_changed(money)
 signal purchase_staff
 signal transgression_changed(transgressions)
+signal caution_transgressions
+signal warning_transgressions
+signal game_over
 
-@export var starting_money : int = 200
 @export var max_transgressions : int = 10
+@export var starting_money : int = 0
+
 var money : int = 0
 var transgressions : int = 10
 
 func _ready() -> void:
 	money = starting_money
+	transgressions = max_transgressions
 
 func credit_account() -> void:
 	money += 5
@@ -24,9 +29,14 @@ func debit_account() -> void:
 func update_trangressions(count : int) -> void:
 	#print("updating transgressions")
 	transgressions = max_transgressions - count
-	transgression_changed.emit(transgressions)
+	if transgressions <= 5:
+		caution_transgressions.emit()
+	if transgressions <= 2:
+		warning_transgressions.emit()
 	if transgressions <= 0:
-		game_over()
+		transgressions = 0
+		game_over.emit()
+	transgression_changed.emit(transgressions)
 
-func game_over() -> void:
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+func game_start() -> void:
+	_ready()

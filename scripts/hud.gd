@@ -7,11 +7,13 @@ signal warning_completed
 @onready var warning: Node = $StormWarning
 @onready var transgressions_meter: Label = %TransgressionsMeter
 @onready var staff_button: Button = $StorePanel/StoreContainer/Staff
+@onready var game_over_screen: Control = $GameOverScreen
 
 func _ready() -> void:
-	AccountManager._on_money_changed.connect(update_money)
-	AccountManager.transgression_changed.connect(update_transgressions)
-	update_money(AccountManager.money)
+	GameManager._on_money_changed.connect(update_money)
+	GameManager.transgression_changed.connect(update_transgressions)
+	GameManager.game_over.connect(_on_game_over)
+	update_money(GameManager.money)
 	warning.warning_complete.connect(_on_warning_completed)
 
 func update_money(money : int) -> void:
@@ -23,7 +25,7 @@ func update_transgressions(count : int) -> void:
 
 func _on_staff_pressed() -> void:
 	#print("staff purchased")
-	AccountManager.debit_account()
+	GameManager.debit_account()
 
 func _on_warning_completed() -> void:
 	warning_completed.emit()
@@ -36,3 +38,6 @@ func _on_game_storming() -> void:
 
 func _on_game_clear_weather() -> void:
 	storm.stop()
+
+func _on_game_over() -> void:
+	game_over_screen.show()

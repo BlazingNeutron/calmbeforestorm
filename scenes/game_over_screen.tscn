@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://vswc5nx22cd0"]
+
+[ext_resource type="Theme" uid="uid://dh1v3rke5y04p" path="res://assets/themes/Menu_Theme.tres" id="1_6clcf"]
+[ext_resource type="Script" path="res://scripts/game_over_screen.gd" id="1_d2w1d"]
+[ext_resource type="FontFile" uid="uid://q5gr6femctvs" path="res://assets/BeachCrush-ovvaq.ttf" id="2_o0tip"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_evsl5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ob6ec"]
+
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d2w1d")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverRText" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_6clcf")
+theme_override_fonts/normal_font = ExtResource("2_o0tip")
+theme_override_font_sizes/normal_font_size = 60
+text = "   Game Over"
+fit_content = true
+scroll_active = false
+
+[node name="RestartButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_evsl5")
+text = "Restart"
+
+[node name="MainMenuButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ob6ec")
+text = "Main Menu"
+
+[connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
