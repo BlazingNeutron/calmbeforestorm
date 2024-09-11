@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cckex47jyoq5l" path="res://assets/audio/strange-creature-talks-96872.mp3" id="3_yyda3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_254wm"]
-size = Vector2(28, 40)
+size = Vector2(63, 108)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sjqn4"]
 atlas = ExtResource("2_cdoh3")
@@ -145,11 +145,11 @@ max_x = 300
 default_y = 250
 
 [node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(0, -17)
+position = Vector2(-5.5, -51)
 shape = SubResource("RectangleShape2D_254wm")
 
 [node name="Sprite2D" parent="." index="1"]
-position = Vector2(7, -24)
+position = Vector2(21, -72)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_d2xa8")
 animation = &"move"
@@ -160,6 +160,3 @@ frame_progress = 0.854221
 stream = ExtResource("3_yyda3")
 pitch_scale = 1.5
 autoplay = false
-
-[node name="PickupTimer" parent="." index="3"]
-one_shot = true

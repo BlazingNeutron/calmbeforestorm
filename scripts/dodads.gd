@@ -2,26 +2,40 @@ extends Node2D
 
 @onready var dodad_timer: Timer = $DodadTimer
 @onready var crab_dodad: AnimatedSprite2D = %CrabDodad
+@onready var shark_dodad: AnimatedSprite2D = %SharkDodad
 
-@export var dodad_list = [ "crab", "shark" ]
+@export var dodad_list = [ 
+	"crab", 
+	"shark"
+]
 @export var dodads = {
-	"crab": { "beach": true, "sprite": "%CrabDodad", "moving": false },
-	"shark": { "beach": false, "sprite": "%SharkDodad", "moving": true }
+	"crab": { "beach": true, "sprite": "%CrabDodad", "moving": false, "scaling": false, "scale": 3 },
+	"shark": { "beach": false, "sprite": "%SharkDodad", "moving": true, "scaling": true }
 }
 
 @export var timer : int = 25
-@export var timer_max : int = 30
-@export var timer_min : int = 7
+@export var timer_max : int = 1
+@export var timer_min : int = 1
 
 var rng = RandomNumberGenerator.new()
-var moving_dodad = null
+var current_dodad = null
+var moving_dodad = false
+var scaled_dodad = false
 
 func _ready() -> void:
+	rng.randomize()
 	start_a_dodad_timer()
 
 func _process(delta: float) -> void:
-	if moving_dodad != null:
-		moving_dodad.position.x += (40 * delta)
+	if moving_dodad:
+		current_dodad.position.x += (40 * delta)
+	if scaled_dodad:
+		calculate_scale(position.y)
+
+func calculate_scale(y : float) -> void:
+	var scale_value = (0.002 * y) + 0.5
+	current_dodad.scale.x = scale_value
+	current_dodad.scale.y = scale_value
 
 func start_a_dodad_timer() -> void:
 	timer = rng.randi_range(timer_min, timer_max)
@@ -35,13 +49,18 @@ func _on_dodad_timer_timeout() -> void:
 	var x
 	var y
 	if dodad_item.beach:
-		x = rng.randi_range(-50, 420)
-		y = rng.randi_range(230, 300)
+		x = rng.randi_range(-530, 500)
+		y = rng.randi_range(200, 290)
 	elif not dodad_item.beach:
-		x = rng.randi_range(-500, 420)
+		x = rng.randi_range(-530, 480)
 		y = rng.randi_range(-200, 180)
+	current_dodad = sprite
 	if dodad_item.moving:
-		moving_dodad = sprite
+		moving_dodad = dodad_item.moving
+	scaled_dodad = dodad_item.scaling
+	if not dodad_item.scaling:
+		sprite.scale.x = dodad_item.scale
+		sprite.scale.y = dodad_item.scale
 	sprite.position.x = x
 	sprite.position.y = y
 	sprite.show()

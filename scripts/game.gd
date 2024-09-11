@@ -28,3 +28,7 @@ func _on_hud_warning_completed() -> void:
 func _on_storm_duration_timeout() -> void:
 	clear_weather.emit()
 	next_storm_timer.start()
+
+func _on_beach_border_body_entered(body: Node2D) -> void:
+	print("something's here")
+	body.unassign()

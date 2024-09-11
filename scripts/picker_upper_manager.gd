@@ -23,7 +23,7 @@ func _on_trash_landed(new_beach_trash) -> void:
 func _on_trash_picked_up(removed_trash) -> void:
 	#print("a trash was picked up")
 	if removed_trash.picker_upper != null:
-		removed_trash.picker_upper.assigned = false
+		removed_trash.picker_upper.unassign()
 	var trash_index = trash_array.find(removed_trash)
 	if trash_index > -1:
 		#print("trash removed")

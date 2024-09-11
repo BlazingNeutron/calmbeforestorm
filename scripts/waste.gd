@@ -27,6 +27,12 @@ func _process(delta: float) -> void:
 		has_landed = true
 		move_to_beach_frame()
 		landed.emit(self)
+	calculate_scale(position.y)
+
+func calculate_scale(y : float) -> void:
+	var scale_value = (0.002 * y) + 0.5
+	scale.x = scale_value
+	scale.y = scale_value
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:

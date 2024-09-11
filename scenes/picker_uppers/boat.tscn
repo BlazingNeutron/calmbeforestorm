@@ -154,6 +154,7 @@ animations = [{
 }]
 
 [node name="PickerUpper" instance=ExtResource("1_esetv")]
+collision_layer = 2
 script = ExtResource("2_ya3ju")
 min_x = -550
 max_x = 300

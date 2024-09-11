@@ -31,6 +31,13 @@ func _process(delta: float) -> void:
 			#print("pickup animation is playing")
 			pickup_timer.start()
 			#print("pickup timer started")
+	if is_water_bound:
+		calculate_scale(position.y)
+
+func calculate_scale(y : float) -> void:
+	var scale_value = (0.002 * y) + 0.9
+	scale.x = scale_value
+	scale.y = scale_value
 
 func spawn_position() -> Vector2:
 	assert(false, "Please override `spawn_position()` in the derived script.")
@@ -43,6 +50,10 @@ func assign_trash(new_trash : Node2D) -> void:
 	#print("playing move")
 	assigned = true
 
+func unassign() -> void:
+	assigned = false
+	sprite.play("default")
+
 func start_sound() -> void:
 	audio_stream_player.play()
 
@@ -54,4 +65,3 @@ func _on_pickup_timer_timeout() -> void:
 		#print("default playing")
 		trash.get_picked_up()
 	assigned = false
-	
