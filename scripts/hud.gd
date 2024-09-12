@@ -9,6 +9,7 @@ signal warning_completed
 @onready var boat_button: Button = $StorePanel/StoreContainer/Boat
 @onready var game_over_screen: Control = $GameOverScreen
 @onready var time_of_day: Label = %TimeOfDay
+@onready var score_display: Label = %ScoreDisplay
 
 var day_count = 1
 var hour = 9
@@ -60,3 +61,4 @@ func _on_game_time_update(time_score: int, _increment: int) -> void:
 		hour = 0
 		day_count += 1
 	time_of_day.text = "Day " + str(day_count) + " - " + ("%02d" % hour) + ":" + ("%02d" % minute)
+	score_display.text = str(GameManager.score)
