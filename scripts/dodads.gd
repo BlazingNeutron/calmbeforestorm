@@ -41,6 +41,7 @@ func calculate_scale(y : float) -> void:
 	current_dodad.scale.y = scale_value
 
 func start_a_dodad_timer() -> void:
+	moving_dodad = null
 	timer = rng.randi_range(timer_min, timer_max)
 	dodad_timer.wait_time = timer
 	dodad_timer.start()
@@ -56,7 +57,7 @@ func _on_dodad_timer_timeout() -> void:
 		y = rng.randi_range(200, 290)
 	elif not dodad_item.beach:
 		x = rng.randi_range(-530, 480)
-		y = rng.randi_range(-200, 180)
+		y = rng.randi_range(-90, 180)
 	current_dodad = sprite
 	if dodad_item.moving:
 		moving_dodad = dodad_item.moving
@@ -70,9 +71,10 @@ func _on_dodad_timer_timeout() -> void:
 	sprite.play()
 
 func _on_shark_dodad_animation_finished() -> void:
-	moving_dodad = null
 	start_a_dodad_timer()
 
 func _on_crab_dodad_animation_finished() -> void:
-	moving_dodad = null
+	start_a_dodad_timer()
+
+func _on_fish_dodad_animation_finished() -> void:
 	start_a_dodad_timer()

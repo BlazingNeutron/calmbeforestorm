@@ -194,7 +194,7 @@ animations = [{
 "duration": 1.0,
 "texture": null
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
@@ -225,8 +225,10 @@ frame_progress = 1.0
 unique_name_in_owner = true
 visible = false
 sprite_frames = SubResource("SpriteFrames_g7ovf")
-frame_progress = 0.153999
+frame = 6
+frame_progress = 1.0
 
 [connection signal="animation_finished" from="CrabDodad" to="." method="_on_crab_dodad_animation_finished"]
 [connection signal="timeout" from="DodadTimer" to="." method="_on_dodad_timer_timeout"]
 [connection signal="animation_finished" from="SharkDodad" to="." method="_on_shark_dodad_animation_finished"]
+[connection signal="animation_finished" from="FishDodad" to="." method="_on_fish_dodad_animation_finished"]

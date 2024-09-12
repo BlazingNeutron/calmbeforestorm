@@ -7,14 +7,14 @@ signal picked_up(trash)
 @onready var sprite: AnimatedSprite2D = $Sprite2D
 @onready var poof: CPUParticles2D = $PoofAnimationParticles
 
-@export var SPEED : int = 40
+@export var SPEED : int = 20
 var has_landed : bool = false
 var claimed : bool = false
 var picker_upper : Node2D = null
 var picking_up : bool = false
 
-@export var frequency = 9
-@export var amplitude = 0.8
+@export var frequency = 3
+@export var amplitude = 0.5
 var time = 0
  
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,11 +28,14 @@ func _process(delta: float) -> void:
 		move_to_beach_frame()
 		landed.emit(self)
 	calculate_scale(position.y)
+	if not visible:
+		show()
 
 func calculate_scale(y : float) -> void:
-	var scale_value = (0.002 * y) + 0.5
-	scale.x = scale_value
-	scale.y = scale_value
+	var scale_value = (0.004 * y) + 0.8
+	#print("scaling ", scale_value)
+	sprite.scale.x = scale_value
+	sprite.scale.y = scale_value
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
