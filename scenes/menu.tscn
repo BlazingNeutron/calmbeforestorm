@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0pt0kofm6mtf"]
+[gd_scene load_steps=4 format=3 uid="uid://b0pt0kofm6mtf"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_hvyrn"]
 [ext_resource type="Theme" uid="uid://dh1v3rke5y04p" path="res://assets/themes/Menu_Theme.tres" id="2_c2dds"]
+[ext_resource type="PackedScene" uid="uid://cvfar7cmhhjgq" path="res://scenes/settings.tscn" id="3_rokx6"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -67,7 +68,6 @@ text = "High Scores
 [node name="Options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_c2dds")
-disabled = true
 text = "Options"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
@@ -77,5 +77,19 @@ focus_neighbor_bottom = NodePath("../Start")
 theme = ExtResource("2_c2dds")
 text = "Exit"
 
+[node name="Settings" parent="." instance=ExtResource("3_rokx6")]
+visible = false
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -400.0
+offset_right = 400.0
+
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="visibility_changed" from="Settings" to="." method="_on_settings_visibility_changed"]

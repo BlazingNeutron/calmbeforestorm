@@ -13,6 +13,7 @@ signal time_update(time, increment)
 var rng = RandomNumberGenerator.new()
 var time_to_next_storm : int = 60
 var time_of_day : int = 0
+var paused = false
 
 func _ready() -> void:
 	rng.randomize()
@@ -48,3 +49,17 @@ func _on_time_of_day_timer_timeout() -> void:
 func _on_beach_border_body_exited(body: Node2D) -> void:
 	#print("something's leaving")
 	body.unassign()
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("pause"):
+		pauseMenu()
+
+func pauseMenu():
+	#print("pausing")
+	get_tree().paused = !get_tree().paused
+	$hud/Settings.visible = !$hud/Settings.visible
+
+func _on_settings_visibility_changed() -> void:
+	#print("settings visibility changed")
+	if not $hud/Settings.visible:
+		get_tree().paused = false

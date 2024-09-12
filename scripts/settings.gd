@@ -28,6 +28,8 @@ var ICON_50 : int = 128
 var ICON_75 : int = 160
 var ICON_100 : int = 192
 
+var initializing = true
+
 func _ready() -> void:
 	master_volume.value = db_to_linear(AudioServer.get_bus_volume_db(MASTER))
 	update_icon(MASTER, master_mute_icon)
@@ -37,6 +39,7 @@ func _ready() -> void:
 	update_icon(MUSIC, music_mute_icon)
 	sfx_volume.value = db_to_linear(AudioServer.get_bus_volume_db(SFX))
 	update_icon(SFX, sfx_mute_icon)
+	initializing = false
 
 func _on_master_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(MASTER, linear_to_db(value))
@@ -61,7 +64,8 @@ func update_icon(bus : int, icon : TextureRect) -> void:
 		AudioServer.is_bus_mute(bus), 
 		icon)
 	audio_test_player.bus = bus_name[bus]
-	audio_test_player.play()
+	if not initializing:
+		audio_test_player.play()
 
 func convert_slider_value_to_icon(value: float, muted: bool, icon: TextureRect) -> void:
 	if value == 1.0:
@@ -121,3 +125,7 @@ func _on_sfx_mute_icon_gui_input(event: InputEvent) -> void:
 			sfx_mute_checkbox.button_pressed = !sfx_mute_checkbox.button_pressed
 			AudioServer.set_bus_mute(SFX, sfx_mute_checkbox.button_pressed)
 			update_icon(SFX, sfx_mute_icon)
+
+func _on_button_pressed() -> void:
+	#print("closing pause menu")
+	self.hide()

@@ -29,6 +29,7 @@ atlas = ExtResource("2_wtedu")
 region = Rect2(0, 0, 32, 32)
 
 [node name="Settings" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchor_left = 0.25
 anchor_top = 0.33
@@ -141,6 +142,11 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_l0neg")
 layout_mode = 2
 texture = SubResource("AtlasTexture_81dvh")
 
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Return to Menu"
+
 [node name="AudioTestPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_b17qc")
 
@@ -156,3 +162,4 @@ stream = ExtResource("2_b17qc")
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/SFXVolumeContainer/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/SFXVolumeContainer/SFXMuteCheckbox" to="." method="_on_sfx_mute_checkbox_toggled"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/SFXVolumeContainer/SFXMuteIcon" to="." method="_on_sfx_mute_icon_gui_input"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

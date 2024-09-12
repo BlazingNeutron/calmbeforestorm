@@ -18,7 +18,7 @@ extends Node2D
 
 @export var timer : int = 25
 @export var timer_max : int = 25
-@export var timer_min : int = 7
+@export var timer_min : int = 7			
 
 var rng = RandomNumberGenerator.new()
 var current_dodad = null
