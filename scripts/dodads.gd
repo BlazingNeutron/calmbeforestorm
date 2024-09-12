@@ -3,14 +3,17 @@ extends Node2D
 @onready var dodad_timer: Timer = $DodadTimer
 @onready var crab_dodad: AnimatedSprite2D = %CrabDodad
 @onready var shark_dodad: AnimatedSprite2D = %SharkDodad
+@onready var fish_dodad: AnimatedSprite2D = $FishDodad
 
 @export var dodad_list = [ 
 	"crab", 
-	"shark"
+	"shark",
+	"fish"
 ]
 @export var dodads = {
 	"crab": { "beach": true, "sprite": "%CrabDodad", "moving": false, "scaling": false, "scale": 3 },
-	"shark": { "beach": false, "sprite": "%SharkDodad", "moving": true, "scaling": true }
+	"shark": { "beach": false, "sprite": "%SharkDodad", "moving": true, "scaling": true },
+	"fish": { "beach": false, "sprite": "%FishDodad", "moving": false, "scaling": true }
 }
 
 @export var timer : int = 25

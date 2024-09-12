@@ -2,7 +2,7 @@ extends Node
 
 signal _on_money_changed(money)
 signal purchase_store_item(store_item_name)
-signal transgression_changed(transgressions)
+signal transgression_changed
 signal caution_transgressions
 signal warning_transgressions
 signal game_over
@@ -29,6 +29,7 @@ func _ready() -> void:
 	_on_money_changed.emit(money)
 	transgressions = max_transgressions
 	score = 0
+	transgression_changed.emit()
 
 func credit_account() -> void:
 	money += GameManager.trash_credits
@@ -50,7 +51,7 @@ func update_trangressions(count : int) -> void:
 		transgressions = 0
 		score += money
 		game_over.emit()
-	transgression_changed.emit(transgressions)
+	transgression_changed.emit()
 
 func game_start() -> void:
 	_ready()

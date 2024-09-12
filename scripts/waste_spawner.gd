@@ -9,7 +9,7 @@ var rng = RandomNumberGenerator.new()
 var timer = 0
 @export var min_x = -550
 @export var max_x = 300
-@export var default_y = -400
+@export var default_y = -120
 @onready var waste_container: Node2D = $".."
 var spawn_timer = GameManager.spawn_rate
 
