@@ -46,5 +46,6 @@ texture = ExtResource("1_er1jn")
 
 [node name="StormWarningSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_vmc28")
+bus = &"SFX"
 
 [connection signal="finished" from="StormWarningSound" to="." method="_on_storm_warning_sound_finished"]

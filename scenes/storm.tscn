@@ -19,6 +19,7 @@ bus = &"SFX"
 
 [node name="PauseBetweenLightning" type="Timer" parent="."]
 wait_time = 6.0
+one_shot = true
 
 [node name="StormDimming" type="ColorRect" parent="."]
 visible = false

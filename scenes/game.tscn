@@ -71,6 +71,7 @@ one_shot = true
 [node name="StormDuration" type="Timer" parent="."]
 process_mode = 1
 wait_time = 30.0
+one_shot = true
 
 [node name="BeachBorder" type="Area2D" parent="."]
 collision_layer = 2

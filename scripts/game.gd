@@ -7,6 +7,7 @@ signal time_update(time, increment)
 
 @onready var next_storm_timer: Timer = %NextStormTimer
 @onready var storm_duration: Timer = $StormDuration
+@onready var time_of_day_timer: Timer = $TimeOfDayTimer
 
 @export var time_increment : int = 15
 
@@ -18,12 +19,14 @@ var paused = false
 func _ready() -> void:
 	rng.randomize()
 	GameManager.game_start()
+	GameManager.game_over.connect(_on_game_over)
 	clear_weather.connect(GameManager._on_storm_over)
 	time_update.connect(GameManager._on_time_update)
 	time_to_next_storm = rng.randi_range(GameManager.min_time_to_next_storm, GameManager.max_time_to_next_storm)
 	next_storm_timer.wait_time = time_to_next_storm
 	storm_duration.wait_time = GameManager.storm_duration_time
 	next_storm_timer.start()
+	time_of_day_timer.start()
 
 func _on_storm_timer_timeout() -> void:
 	#print("Storm warning timer")
@@ -63,3 +66,6 @@ func _on_settings_visibility_changed() -> void:
 	#print("settings visibility changed")
 	if not $hud/Settings.visible:
 		get_tree().paused = false
+
+func _on_game_over() -> void:
+	time_of_day_timer.stop()
