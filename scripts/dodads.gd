@@ -14,8 +14,8 @@ extends Node2D
 }
 
 @export var timer : int = 25
-@export var timer_max : int = 1
-@export var timer_min : int = 1
+@export var timer_max : int = 25
+@export var timer_min : int = 7
 
 var rng = RandomNumberGenerator.new()
 var current_dodad = null
@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 		calculate_scale(position.y)
 
 func calculate_scale(y : float) -> void:
-	var scale_value = (0.002 * y) + 0.5
+	var scale_value = (0.002 * y) + 0.9
 	current_dodad.scale.x = scale_value
 	current_dodad.scale.y = scale_value
 

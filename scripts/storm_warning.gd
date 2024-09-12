@@ -24,4 +24,5 @@ func _on_storm_warning_sound_finished() -> void:
 		storm_warning_sound.play()
 		replay_count += 1
 	else:
+		replay_count = 0
 		warning_complete.emit()

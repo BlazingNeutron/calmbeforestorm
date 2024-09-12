@@ -78,7 +78,7 @@ func search_for_water_trash(pu : Node2D) -> Node2D:
 	var closest_trash = null
 	for trash in trash_array:
 		#print("Look at this mess - ocean styles")
-		if trash == null or trash.claimed == true or trash.has_landed:
+		if trash == null or trash.claimed == true or trash.has_landed or trash.position.y < -250 or trash.position.y > 110:
 			continue
 		var trash_pos = trash.global_position
 		var distance = current_pu_position.distance_to(trash_pos)

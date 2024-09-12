@@ -24,7 +24,10 @@ func _process(delta: float) -> void:
 			sprite.flip_h = true
 		else:
 			sprite.flip_h = false
-		position = position.move_toward(trash.position, delta * speed)
+		if is_water_bound:
+			position = position.move_toward(trash.position, delta * speed * (0.002 * position.y) + 0.9)
+		else:
+			position = position.move_toward(trash.position, delta * speed)
 		if distance < 10:
 			#print("I picked one up")
 			sprite.play("pickup")
@@ -52,6 +55,8 @@ func assign_trash(new_trash : Node2D) -> void:
 
 func unassign() -> void:
 	assigned = false
+	if trash != null:
+		trash.claimed = false
 	sprite.play("default")
 
 func start_sound() -> void:

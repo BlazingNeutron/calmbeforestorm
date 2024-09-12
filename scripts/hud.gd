@@ -9,6 +9,11 @@ signal warning_completed
 @onready var staff_button: Button = $StorePanel/StoreContainer/Staff
 @onready var boat_button: Button = $StorePanel/StoreContainer/Boat
 @onready var game_over_screen: Control = $GameOverScreen
+@onready var time_of_day: Label = %TimeOfDay
+
+var day_count = 1
+var hour = 9
+var minute = 0
 
 func _ready() -> void:
 	GameManager._on_money_changed.connect(update_money)
@@ -46,3 +51,17 @@ func _on_game_over() -> void:
 
 func _on_boat_pressed() -> void:
 	GameManager.debit_account("boat")
+
+func _on_game_time_update(time_score: int, _increment: int) -> void:
+	if time_score % 60 == 0:
+		hour += 1
+		time_score = 0
+	var minute_mod = (time_score/15) % 4
+	if minute_mod >= 2:
+		minute = 30
+	else:
+		minute = 0
+	if hour >= 24:
+		hour = 0
+		day_count += 1
+	time_of_day.text = "Day " + str(day_count) + " - " + ("%02d" % hour) + ":" + ("%02d" % minute)
