@@ -131,3 +131,7 @@ func _on_sfx_mute_icon_gui_input(event: InputEvent) -> void:
 func _on_button_pressed() -> void:
 	#print("closing pause menu")
 	close_settings.emit()
+
+
+func _on_options_pressed() -> void:
+	pass # Replace with function body.

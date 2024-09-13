@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var settings: Control = $hud/Settings
+@onready var pause_menu: Control = $hud/PauseMenu
 @onready var storm_warning: CanvasLayer = $hud/StormWarning
 @onready var storm: CanvasLayer = $hud/Storm
 @onready var game_over_screen: Control = $hud/GameOverScreen
@@ -26,11 +26,11 @@ func _process(_delta: float) -> void:
 func pauseMenu():
 	#print("pausing")
 	get_tree().paused = !get_tree().paused
-	settings.visible = !settings.visible
+	pause_menu.visible = !pause_menu.visible
 
 func _on_settings_visibility_changed() -> void:
 	#print("settings visibility changed")
-	if not settings.visible:
+	if not pause_menu.visible:
 		get_tree().paused = false
 
 func _on_storm_warning() -> void:
@@ -47,3 +47,6 @@ func _on_storm_stop() -> void:
 
 func _on_game_over() -> void:
 	game_over_screen.show()
+
+func _on_pause_menu_close_pause_menu() -> void:
+	pauseMenu()

@@ -46,7 +46,6 @@ var high_scores : Scores = null
 
 func _ready() -> void:
 	high_scores = Scores.load()
-	start_game()
 
 func credit_account() -> void:
 	money += GameManager.trash_credits
@@ -84,7 +83,9 @@ func start_game() -> void:
 	storm_duration.stop()
 	game_start.emit()
 
-func _game_over() -> void:
+func stop_game(forced: bool) -> void:
+	if forced:
+		clear_weather.emit()
 	money_changed.emit()
 	health = 0
 	health_changed.emit()
@@ -93,6 +94,9 @@ func _game_over() -> void:
 	next_storm_timer.stop()
 	time_of_day_timer.stop()
 	storm_duration.stop()
+
+func _game_over() -> void:
+	stop_game(false)
 	# save highscore
 	high_scores.add(score)
 	high_scores.save()

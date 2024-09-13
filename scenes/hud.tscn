@@ -28,7 +28,7 @@ grow_vertical = 2
 
 [node name="TheStoreLabel" type="Label" parent="StorePanel/StoreContainer"]
 layout_mode = 2
-text = "Tidal Trash Taskforce Store"
+text = "Clean Up Crew Store"
 horizontal_alignment = 1
 
 [node name="Money" type="Label" parent="StorePanel/StoreContainer"]

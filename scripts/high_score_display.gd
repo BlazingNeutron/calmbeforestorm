@@ -18,6 +18,5 @@ func _on_visibility_changed() -> void:
 			if count > 10:
 				break
 
-
 func _on_back_button_pressed() -> void:
 	close_score.emit()
