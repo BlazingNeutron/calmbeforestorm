@@ -28,7 +28,7 @@ func update_money() -> void:
 func update_time_display() -> void:
 	if GameManager.time_of_day % 60 == 0:
 		hour += 1
-	var minute_mod = ((GameManager.time_of_day % 60)/15) % 4
+	var minute_mod = int((GameManager.time_of_day % 60)/15.0) % 4
 	if minute_mod >= 2:
 		minute = 30
 	else:

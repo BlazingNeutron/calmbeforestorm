@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://iagjcdoeawtf"]
+[gd_scene load_steps=16 format=4 uid="uid://iagjcdoeawtf"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_p5c5y"]
 [ext_resource type="TileSet" uid="uid://dohcdu6rieggc" path="res://assets/sprites/tilset.tres" id="3_2kvtt"]
@@ -11,9 +11,25 @@
 [ext_resource type="PackedScene" uid="uid://vswc5nx22cd0" path="res://scenes/game_over_screen.tscn" id="6_ptmcp"]
 [ext_resource type="Texture2D" uid="uid://b01qwonhlynnr" path="res://assets/sprites/background.png" id="7_evbw8"]
 [ext_resource type="PackedScene" uid="uid://cvfar7cmhhjgq" path="res://scenes/settings.tscn" id="8_d7kun"]
+[ext_resource type="Texture2D" uid="uid://doi1uvali0a5g" path="res://assets/sprites/clouds.png" id="12_lo1mh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hs64v"]
 size = Vector2(1663, 373)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvknn"]
+atlas = ExtResource("12_lo1mh")
+region = Rect2(0, 0, 1024, 246)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ahqlk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvknn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="game" type="Node2D"]
 process_mode = 3
@@ -91,8 +107,17 @@ shape = SubResource("RectangleShape2D_hs64v")
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Parallax2D"]
 position = Vector2(1, -201)
-scale = Vector2(1.14941, 1)
+scale = Vector2(1.149, 1)
 texture = ExtResource("7_evbw8")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Parallax2D" type="Parallax2D" parent="ParallaxBackground/ParallaxLayer2"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ParallaxBackground/ParallaxLayer2/Parallax2D"]
+position = Vector2(0, -201)
+scale = Vector2(1.2, 1)
+sprite_frames = SubResource("SpriteFrames_ahqlk")
 
 [connection signal="visibility_changed" from="hud/Settings" to="." method="_on_settings_visibility_changed"]
 [connection signal="warning_complete" from="hud/StormWarning" to="." method="_on_storm_warning_warning_complete"]

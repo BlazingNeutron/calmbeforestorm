@@ -1,9 +1,6 @@
 extends Node2D
 
 @onready var dodad_timer: Timer = $DodadTimer
-@onready var crab_dodad: AnimatedSprite2D = %CrabDodad
-@onready var shark_dodad: AnimatedSprite2D = %SharkDodad
-@onready var fish_dodad: AnimatedSprite2D = $FishDodad
 
 @export var dodad_list = [ 
 	"crab", 
@@ -12,43 +9,51 @@ extends Node2D
 ]
 @export var dodads = {
 	"crab": { "beach": true, "sprite": "%CrabDodad", "moving": false, "scaling": false, "scale": 3 },
-	"shark": { "beach": false, "sprite": "%SharkDodad", "moving": true, "scaling": true },
-	"fish": { "beach": false, "sprite": "%FishDodad", "moving": false, "scaling": true }
+	"shark": { "beach": false, "sprite": "%SharkDodad", "moving": true, "scaling": true, "direction": "x" },
+	"fish": { "beach": false, "sprite": "%FishDodad", "moving": false, "scaling": true },
+	"wave": { "beach": false, "sprite": "%WaveDodad", "moving": true, "scaling": true, "direction": "y" },
 }
 
 @export var timer : int = 25
 @export var timer_max : int = 25
-@export var timer_min : int = 7			
+@export var timer_min : int = 7
 
 var rng = RandomNumberGenerator.new()
 var current_dodad = null
-var moving_dodad = false
+var moving_direction = null
 var scaled_dodad = false
+var active_wave_dodad = null
 
 func _ready() -> void:
 	rng.randomize()
 	start_a_dodad_timer()
 
 func _process(delta: float) -> void:
-	if moving_dodad:
-		current_dodad.position.x += (40 * delta)
-	if scaled_dodad:
-		calculate_scale(position.y)
+	if active_wave_dodad != null:
+		active_wave_dodad.position.y += (20 * delta)
+		calculate_scale(active_wave_dodad, position.y)
+	if current_dodad != null:
+		if moving_direction == "x":
+			current_dodad.position.x += (40 * delta)
+		if scaled_dodad:
+			calculate_scale(current_dodad, position.y)
 
-func calculate_scale(y : float) -> void:
+func calculate_scale(dodad, y : float) -> void:
 	var scale_value = (0.002 * y) + 0.9
-	current_dodad.scale.x = scale_value
-	current_dodad.scale.y = scale_value
+	dodad.scale.x = scale_value
+	dodad.scale.y = scale_value
 
 func start_a_dodad_timer() -> void:
-	moving_dodad = null
 	timer = rng.randi_range(timer_min, timer_max)
 	dodad_timer.wait_time = timer
 	dodad_timer.start()
 
 func _on_dodad_timer_timeout() -> void:
 	var dodad_index = rng.randi_range(0, dodad_list.size() - 1)
-	var dodad_item = dodads.get(dodad_list[dodad_index])
+	start_dodad(dodad_list[dodad_index])
+
+func start_dodad(dodad_name : String) -> void:
+	var dodad_item = dodads.get(dodad_name)
 	var sprite = get_node(dodad_item.sprite)
 	var x
 	var y
@@ -58,10 +63,13 @@ func _on_dodad_timer_timeout() -> void:
 	elif not dodad_item.beach:
 		x = rng.randi_range(-530, 480)
 		y = rng.randi_range(-90, 180)
-	current_dodad = sprite
-	if dodad_item.moving:
-		moving_dodad = dodad_item.moving
-	scaled_dodad = dodad_item.scaling
+	if dodad_name != "wave":
+		current_dodad = sprite
+		if dodad_item.moving:
+			moving_direction = dodad_item.direction
+		scaled_dodad = dodad_item.scaling
+	if dodad_name == "wave":
+		active_wave_dodad = sprite
 	if not dodad_item.scaling:
 		sprite.scale.x = dodad_item.scale
 		sprite.scale.y = dodad_item.scale
@@ -78,3 +86,10 @@ func _on_crab_dodad_animation_finished() -> void:
 
 func _on_fish_dodad_animation_finished() -> void:
 	start_a_dodad_timer()
+
+func _on_wave_dodad_animation_finished() -> void:
+	active_wave_dodad = null
+
+func _on_wave_timer_timeout() -> void:
+	#print("starting wave")
+	start_dodad("wave")

@@ -1,29 +1,36 @@
-[gd_scene load_steps=7 format=3 uid="uid://brhk6ttv86waw"]
+[gd_scene load_steps=8 format=3 uid="uid://brhk6ttv86waw"]
 
 [ext_resource type="PackedScene" uid="uid://dr2cu7ky4p2pn" path="res://scenes/waste/waste.tscn" id="1_we7ra"]
-[ext_resource type="Texture2D" uid="uid://ck7k5qy3ga1ff" path="res://assets/sprites/waste-scrap1-Sheet.png" id="2_nlqwr"]
+[ext_resource type="Texture2D" uid="uid://bioegryg8ftf3" path="res://assets/sprites/shoreline1.png" id="2_jfqhe"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5n66g"]
-atlas = ExtResource("2_nlqwr")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr14p"]
+atlas = ExtResource("2_jfqhe")
+region = Rect2(128, 384, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2j3je"]
-atlas = ExtResource("2_nlqwr")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekajr"]
+atlas = ExtResource("2_jfqhe")
+region = Rect2(160, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybdpg"]
+atlas = ExtResource("2_jfqhe")
+region = Rect2(96, 384, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1pbgw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5n66g")
+"texture": SubResource("AtlasTexture_nr14p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekajr")
 }],
 "loop": true,
 "name": &"default",
-"speed": 0.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2j3je")
+"texture": SubResource("AtlasTexture_ybdpg")
 }],
 "loop": true,
 "name": &"landed",
@@ -31,13 +38,14 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vd4s7"]
-radius = 20.0998
+radius = 17.0
 
 [node name="waste" instance=ExtResource("1_we7ra")]
 
 [node name="Sprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_1pbgw")
 autoplay = "default"
+frame_progress = 0.508572
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_vd4s7")

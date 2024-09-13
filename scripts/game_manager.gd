@@ -23,9 +23,9 @@ signal clear_weather
 	"staff" : { "cost": 50, "scene": preload("res://scenes/picker_uppers/staff.tscn") },
 	"boat" : { "cost": 250, "scene": preload("res://scenes/picker_uppers/boat.tscn") }
 }
-@export var init_max_time_to_next_storm : int = 5
-@export var init_min_time_to_next_storm : int = 2
-@export var initial_storm_duration_time : int = 10
+@export var init_max_time_to_next_storm : int = 45
+@export var init_min_time_to_next_storm : int = 25
+@export var initial_storm_duration_time : int = 20
 @export var initial_spawn_rate : float = 2
 @export var initial_storm_spawn_rate : float = 0.4
 @export var trash_credits : int = 5
@@ -114,7 +114,7 @@ func _on_time_of_day_timer_timeout() -> void:
 	time_update.emit(time_increment)
 
 func _on_next_storm_timer_timeout() -> void:
-	print("Next storm warning start")
+	#print("Next storm warning start")
 	storm_warning.emit()
 	next_storm_timer.stop()
 

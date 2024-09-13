@@ -44,7 +44,6 @@ size = Vector2(31, 51)
 
 [node name="Sprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_t2dsb")
-animation = &"landed"
 autoplay = "default"
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
