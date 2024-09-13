@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="Scores" load_steps=2 format=3 uid="uid://df38van5gsw74"]
-
-[ext_resource type="Script" path="res://scripts/high_scores.gd" id="1_m1io2"]
-
-[resource]
-script = ExtResource("1_m1io2")
-high_scores = [700, 2595, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]

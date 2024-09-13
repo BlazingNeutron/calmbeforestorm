@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0pt0kofm6mtf"]
+[gd_scene load_steps=6 format=3 uid="uid://b0pt0kofm6mtf"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_hvyrn"]
 [ext_resource type="Theme" uid="uid://dh1v3rke5y04p" path="res://assets/themes/Menu_Theme.tres" id="2_c2dds"]
+[ext_resource type="Texture2D" uid="uid://yte7avdy55mc" path="res://assets/sprites/Screenshot_20240913_162800.png" id="2_ka552"]
 [ext_resource type="PackedScene" uid="uid://cvfar7cmhhjgq" path="res://scenes/settings.tscn" id="3_rokx6"]
 [ext_resource type="PackedScene" uid="uid://cgvldrw2eexr4" path="res://scenes/high_score_display.tscn" id="4_5upo2"]
 
@@ -22,8 +23,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -913.0
+offset_top = -493.0
+offset_right = 913.0
+offset_bottom = 494.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_ka552")
 
 [node name="Title" type="RichTextLabel" parent="."]
 layout_mode = 0
