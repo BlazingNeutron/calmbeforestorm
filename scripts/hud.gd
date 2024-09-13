@@ -22,7 +22,7 @@ func _on_game_start() -> void:
 func update_money() -> void:
 	var money = GameManager.money
 	money_label.text = "$" + str(money)
-	staff_button.disabled = false #(money < GameManager.store_items.staff.cost)
+	staff_button.disabled = (money < GameManager.store_items.staff.cost)
 	boat_button.disabled = (money < GameManager.store_items.boat.cost)
 
 func update_time_display() -> void:

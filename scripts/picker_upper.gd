@@ -30,6 +30,7 @@ func _process(delta: float) -> void:
 			position = position.move_toward(trash.position, delta * speed)
 		if distance < 10:
 			#print("I picked one up")
+			trash.start_pickup()
 			sprite.play("pickup")
 			#print("pickup animation is playing")
 			pickup_timer.start()

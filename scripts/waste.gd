@@ -6,6 +6,7 @@ signal picked_up(trash)
 @onready var pick_up_sound: AudioStreamPlayer = $PickUpSound
 @onready var sprite: AnimatedSprite2D = $Sprite2D
 @onready var poof: CPUParticles2D = $PoofAnimationParticles
+@onready var coin_particles: CPUParticles2D = $CoinParticles
 
 @export var SPEED : int = 20
 var has_landed : bool = false
@@ -50,10 +51,16 @@ func get_picked_up(play_sound : bool = false) -> void:
 	sprite.hide()
 	poof.emitting = true
 	poof.restart()
+	coin_particles.restart()
+	coin_particles.emitting = true
 	if play_sound:
 		pick_up_sound.play()
 	else:
 		clear_trash()
+
+func start_pickup() -> void:
+	sprite.hide()
+	$Area2D.input_pickable = false
 
 func _on_pick_up_sound_finished() -> void:
 	clear_trash()
@@ -64,3 +71,6 @@ func clear_trash():
 
 func move_to_beach_frame() -> void:
 	sprite.play("landed")
+
+func _on_coin_particles_finished() -> void:
+	coin_particles.hide()
