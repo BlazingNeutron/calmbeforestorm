@@ -1,6 +1,7 @@
 extends Control
 
 func _on_restart_button_pressed() -> void:
+	GameManager.start_game()
 	get_tree().reload_current_scene()
 
 func _on_main_menu_button_pressed() -> void:

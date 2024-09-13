@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=4 uid="uid://iagjcdoeawtf"]
+[gd_scene load_steps=13 format=4 uid="uid://iagjcdoeawtf"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_p5c5y"]
 [ext_resource type="TileSet" uid="uid://dohcdu6rieggc" path="res://assets/sprites/tilset.tres" id="3_2kvtt"]
 [ext_resource type="PackedScene" uid="uid://bfka3w6b3sayd" path="res://scenes/waste_spawner.tscn" id="3_44yya"]
 [ext_resource type="PackedScene" uid="uid://c0luf734cnh5g" path="res://scenes/picker_upper_manager.tscn" id="3_jhrrb"]
+[ext_resource type="PackedScene" uid="uid://jeovohtmmp0a" path="res://scenes/storm.tscn" id="4_76dsj"]
 [ext_resource type="PackedScene" uid="uid://d3y2w6dk2qoel" path="res://scenes/hud.tscn" id="4_ef12f"]
+[ext_resource type="PackedScene" uid="uid://5hjrx53y7uu0" path="res://scenes/storm_warning.tscn" id="5_1j2u0"]
 [ext_resource type="PackedScene" uid="uid://dihxi10qb34q3" path="res://scenes/dodads/dodads.tscn" id="6_m8ls0"]
+[ext_resource type="PackedScene" uid="uid://vswc5nx22cd0" path="res://scenes/game_over_screen.tscn" id="6_ptmcp"]
 [ext_resource type="Texture2D" uid="uid://b01qwonhlynnr" path="res://assets/sprites/background.png" id="7_evbw8"]
 [ext_resource type="PackedScene" uid="uid://cvfar7cmhhjgq" path="res://scenes/settings.tscn" id="8_d7kun"]
 
@@ -31,6 +34,15 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -400.0
 offset_right = 400.0
+
+[node name="Storm" parent="hud" instance=ExtResource("4_76dsj")]
+visible = false
+
+[node name="StormWarning" parent="hud" instance=ExtResource("5_1j2u0")]
+visible = false
+
+[node name="GameOverScreen" parent="hud" instance=ExtResource("6_ptmcp")]
+visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_mode = 1
@@ -63,16 +75,6 @@ process_mode = 1
 [node name="PickerUpperManager" parent="PickerUppersContainer" instance=ExtResource("3_jhrrb")]
 unique_name_in_owner = true
 
-[node name="NextStormTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-process_mode = 1
-one_shot = true
-
-[node name="StormDuration" type="Timer" parent="."]
-process_mode = 1
-wait_time = 30.0
-one_shot = true
-
 [node name="BeachBorder" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
@@ -80,10 +82,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BeachBorder"]
 position = Vector2(94.5, -86.5)
 shape = SubResource("RectangleShape2D_hs64v")
-
-[node name="TimeOfDayTimer" type="Timer" parent="."]
-process_mode = 1
-autostart = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -96,16 +94,7 @@ position = Vector2(1, -201)
 scale = Vector2(1.14941, 1)
 texture = ExtResource("7_evbw8")
 
-[connection signal="clear_weather" from="." to="hud" method="_on_game_clear_weather"]
-[connection signal="clear_weather" from="." to="WasteContainer/WasteSpawner" method="_on_game_clear_weather"]
-[connection signal="storming" from="." to="hud" method="_on_game_storming"]
-[connection signal="storming" from="." to="WasteContainer/WasteSpawner" method="_on_game_storming"]
-[connection signal="time_update" from="." to="hud" method="_on_game_time_update"]
-[connection signal="warning" from="." to="hud" method="_on_storm_warning"]
-[connection signal="warning_completed" from="hud" to="." method="_on_hud_warning_completed"]
 [connection signal="visibility_changed" from="hud/Settings" to="." method="_on_settings_visibility_changed"]
+[connection signal="warning_complete" from="hud/StormWarning" to="." method="_on_storm_warning_warning_complete"]
 [connection signal="spawned_trash" from="WasteContainer/WasteSpawner" to="PickerUppersContainer/PickerUpperManager" method="_on_waste_spawner_spawned_trash"]
-[connection signal="timeout" from="NextStormTimer" to="." method="_on_storm_timer_timeout"]
-[connection signal="timeout" from="StormDuration" to="." method="_on_storm_duration_timeout"]
 [connection signal="body_exited" from="BeachBorder" to="." method="_on_beach_border_body_exited"]
-[connection signal="timeout" from="TimeOfDayTimer" to="." method="_on_time_of_day_timer_timeout"]

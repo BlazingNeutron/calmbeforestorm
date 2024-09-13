@@ -5,3 +5,21 @@
 [node name="GameManager" type="Node"]
 process_mode = 3
 script = ExtResource("1_1uwgs")
+
+[node name="NextStormTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_mode = 1
+one_shot = true
+
+[node name="StormDuration" type="Timer" parent="."]
+process_mode = 1
+wait_time = 30.0
+one_shot = true
+
+[node name="TimeOfDayTimer" type="Timer" parent="."]
+process_mode = 1
+autostart = true
+
+[connection signal="timeout" from="NextStormTimer" to="." method="_on_next_storm_timer_timeout"]
+[connection signal="timeout" from="StormDuration" to="." method="_on_storm_duration_timeout"]
+[connection signal="timeout" from="TimeOfDayTimer" to="." method="_on_time_of_day_timer_timeout"]

@@ -14,7 +14,9 @@ var timer = 0
 var spawn_timer = GameManager.spawn_rate
 
 func _ready():
-	timer = 500
+	GameManager.game_start.connect(_on_game_start)
+	GameManager.storming.connect(_on_game_storming)
+	GameManager.clear_weather.connect(_on_game_clear_weather)
 
 func _process(delta):
 	if timer + delta > spawn_timer:
@@ -44,4 +46,7 @@ func _on_game_storming() -> void:
 	spawn_timer = GameManager.storm_spawn_rate
 
 func _on_game_clear_weather() -> void:
+	spawn_timer = GameManager.spawn_rate
+
+func _on_game_start() -> void:
 	spawn_timer = GameManager.spawn_rate

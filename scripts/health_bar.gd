@@ -1,11 +1,16 @@
 extends ProgressBar
 
 func _ready() -> void:
-	GameManager.transgression_changed.connect(update_health_bar)
+	GameManager.game_start.connect(_on_game_start)
+	GameManager.health_changed.connect(update_health_bar)
+	update_health_bar()
+
+func _on_game_start() -> void:
 	update_health_bar()
 
 func update_health_bar():
-	value = GameManager.transgressions
+	#print("update_health_bar ", GameManager.health)
+	value = GameManager.health
 	var styleBox = get_theme_stylebox("fill")
 	if value > 7:
 		styleBox.set("bg_color", Color(0.0, 1.0, 0.0))

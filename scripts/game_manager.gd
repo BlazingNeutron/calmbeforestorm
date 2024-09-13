@@ -1,72 +1,123 @@
 extends Node
 
-signal _on_money_changed(money)
-signal purchase_store_item(store_item_name)
-signal transgression_changed
-signal caution_transgressions
-signal warning_transgressions
+signal game_start
 signal game_over
 
-@export var max_transgressions : int = 10
+signal money_changed
+signal purchase_store_item(store_item_name)
+signal health_changed
+signal time_update(increment)
+
+signal storm_warning
+signal storming
+signal clear_weather
+
+@onready var next_storm_timer: Timer = %NextStormTimer
+@onready var storm_duration: Timer = $StormDuration
+@onready var time_of_day_timer: Timer = $TimeOfDayTimer
+
+@export var time_increment : int = 15
+@export var max_health : int = 10
 @export var starting_money : int = 0
 @export var store_items = {
 	"staff" : { "cost": 50, "scene": preload("res://scenes/picker_uppers/staff.tscn") },
 	"boat" : { "cost": 250, "scene": preload("res://scenes/picker_uppers/boat.tscn") }
 }
-@export var max_time_to_next_storm : int = 5
-@export var min_time_to_next_storm : int = 5
-@export var storm_duration_time : int = 1
-@export var spawn_rate : float = 2
-@export var storm_spawn_rate : float = 0.4
+@export var init_max_time_to_next_storm : int = 5
+@export var init_min_time_to_next_storm : int = 2
+@export var initial_storm_duration_time : int = 10
+@export var initial_spawn_rate : float = 2
+@export var initial_storm_spawn_rate : float = 0.4
 @export var trash_credits : int = 5
 
+var max_time_to_next_storm : int = init_max_time_to_next_storm
+var min_time_to_next_storm : int = init_min_time_to_next_storm
+var storm_spawn_rate : float = initial_storm_spawn_rate
+var storm_duration_time : int = 15
+var spawn_rate : float = initial_spawn_rate
+var rng = RandomNumberGenerator.new()
+var time_to_next_storm : int = 60
+var time_of_day : int = 0
 var money : int = 0
-var transgressions : int = 10
+var health : int = 10
 var score : int = 0
 var is_game_over : bool = false
 
 func _ready() -> void:
-	game_start()
+	start_game()
 
 func credit_account() -> void:
 	money += GameManager.trash_credits
-	_on_money_changed.emit(money)
+	money_changed.emit()
 
 func debit_account(item_name : String) -> void:
 	money -= GameManager.store_items.get(item_name).cost
-	_on_money_changed.emit(money)
+	money_changed.emit()
 	purchase_store_item.emit(item_name)
 
-func update_trangressions(count : int) -> void:
-	#print("updating transgressions")
-	transgressions = max_transgressions - count
-	if transgressions <= 5:
-		caution_transgressions.emit()
-	if transgressions <= 2:
-		warning_transgressions.emit()
-	if transgressions <= 0:
-		transgressions = 0
-		score += money
-		is_game_over = true
-		game_over.emit()
-	transgression_changed.emit()
+func update_health(count : int) -> void:
+	#print("updating health")
+	health = max_health - count
+	if health <= 0:
+		_game_over()
+	health_changed.emit()
 
-func game_start() -> void:
+func start_game() -> void:
 	money = starting_money
-	_on_money_changed.emit(money)
-	transgressions = max_transgressions
+	money_changed.emit()
+	health = max_health
+	health_changed.emit()
 	score = 0
-	transgression_changed.emit()
+	time_of_day = 0
 	is_game_over = false
+	rng.randomize()
+	spawn_rate = initial_spawn_rate
+	storm_spawn_rate = initial_storm_spawn_rate
+	storm_duration_time = initial_storm_duration_time
+	time_to_next_storm = rng.randi_range(min_time_to_next_storm, max_time_to_next_storm)
+	next_storm_timer.wait_time = time_to_next_storm
+	storm_duration.wait_time = storm_duration_time
+	next_storm_timer.start()
+	time_of_day_timer.start()
+	storm_duration.stop()
+	game_start.emit()
 
-func _on_time_update(_time_value : int, time_increment : int):
-	if not is_game_over:
-		score += time_increment
-	
-func _on_storm_over():
+func _game_over() -> void:
+	money_changed.emit()
+	health = 0
+	health_changed.emit()
+	score += money
+	is_game_over = true
+	next_storm_timer.stop()
+	time_of_day_timer.stop()
+	storm_duration.stop()
+	game_over.emit()
+
+func level_up():
 	spawn_rate = spawn_rate/2
 	storm_spawn_rate = storm_spawn_rate/2
+	storm_duration_time += 5
 	if max_time_to_next_storm > 2:
 		max_time_to_next_storm -= 2
 	if min_time_to_next_storm > 2:
 		min_time_to_next_storm -= 2
+
+func _on_storm_duration_timeout() -> void:
+	clear_weather.emit()
+	level_up()
+	next_storm_timer.start()
+
+func _on_time_of_day_timer_timeout() -> void:
+	time_of_day += time_increment
+	if not is_game_over:
+		score += time_increment
+	time_update.emit(time_increment)
+
+func _on_next_storm_timer_timeout() -> void:
+	print("Next storm warning start")
+	storm_warning.emit()
+	next_storm_timer.stop()
+
+func _on_warning_complete() -> void:
+	storming.emit()
+	storm_duration.start()

@@ -8,6 +8,10 @@ extends CanvasLayer
 var storming : bool = false
 var thunder_still_rolls : bool = false
 
+func _ready() -> void:
+	GameManager.storming.connect(start)
+	GameManager.clear_weather.connect(stop)
+
 func _process(_delta: float) -> void:
 	if storming and not thunder_still_rolls:
 		lightning_strike()
