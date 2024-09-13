@@ -21,11 +21,11 @@ func _on_storm_end() -> void:
 
 func change_music(ocean, music) -> void:
 	var tween = create_tween()
-	tween.tween_property(ocean_sounds_audio_player, "volume_db", linear_to_db(0), 1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-	tween.tween_property(background_music_audio_player, "volume_db", linear_to_db(0), 1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	tween.tween_property(ocean_sounds_audio_player, "volume_db", 0, 1)
+	tween.tween_property(background_music_audio_player, "volume_db", 0, 1)
 	ocean_sounds_audio_player.stream = ResourceLoader.load(ocean)
 	ocean_sounds_audio_player.play()
 	background_music_audio_player.stream = ResourceLoader.load(music)
 	background_music_audio_player.play()
-	tween.tween_property(ocean_sounds_audio_player, "volume_db", linear_to_db(1), 1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-	tween.tween_property(background_music_audio_player, "volume_db", linear_to_db(1), 1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	tween.tween_property(ocean_sounds_audio_player, "volume_db", 1, 1)
+	tween.tween_property(background_music_audio_player, "volume_db", 1, 1)

@@ -23,8 +23,8 @@ signal clear_weather
 	"staff" : { "cost": 50, "scene": preload("res://scenes/picker_uppers/staff.tscn") },
 	"boat" : { "cost": 250, "scene": preload("res://scenes/picker_uppers/boat.tscn") }
 }
-@export var init_max_time_to_next_storm : int = 45
-@export var init_min_time_to_next_storm : int = 25
+@export var init_max_time_to_next_storm : int = 1
+@export var init_min_time_to_next_storm : int = 1
 @export var initial_storm_duration_time : int = 20
 @export var initial_spawn_rate : float = 2
 @export var initial_storm_spawn_rate : float = 0.4

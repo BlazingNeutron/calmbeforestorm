@@ -53,6 +53,9 @@ func _on_dodad_timer_timeout() -> void:
 	start_dodad(dodad_list[dodad_index])
 
 func start_dodad(dodad_name : String) -> void:
+	moving_direction = ""
+	scaled_dodad = false
+	current_dodad = null
 	var dodad_item = dodads.get(dodad_name)
 	var sprite = get_node(dodad_item.sprite)
 	var x
