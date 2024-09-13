@@ -42,8 +42,10 @@ var money : int = 0
 var health : int = 10
 var score : int = 0
 var is_game_over : bool = false
+var high_scores : Scores = null
 
 func _ready() -> void:
+	high_scores = Scores.load()
 	start_game()
 
 func credit_account() -> void:
@@ -58,7 +60,7 @@ func debit_account(item_name : String) -> void:
 func update_health(count : int) -> void:
 	#print("updating health")
 	health = max_health - count
-	if health <= 0:
+	if health <= 0 and not is_game_over:
 		_game_over()
 	health_changed.emit()
 
@@ -92,6 +94,8 @@ func _game_over() -> void:
 	time_of_day_timer.stop()
 	storm_duration.stop()
 	# save highscore
+	high_scores.add(score)
+	high_scores.save()
 	game_over.emit()
 
 func level_up():

@@ -31,7 +31,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if active_wave_dodad != null:
 		active_wave_dodad.position.y += (20 * delta)
-		calculate_scale(active_wave_dodad, position.y)
+		calculate_scale(active_wave_dodad, position.y + 400)
 	if current_dodad != null:
 		if moving_direction == "x":
 			current_dodad.position.x += (40 * delta)

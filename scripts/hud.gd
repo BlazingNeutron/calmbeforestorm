@@ -37,7 +37,7 @@ func update_time_display() -> void:
 		hour = 0
 		day_count += 1
 	time_of_day.text = "Day " + str(day_count) + " - " + ("%02d" % hour) + ":" + ("%02d" % minute)
-	score_display.text = str(GameManager.score)
+	score_display.text = str(GameManager.score + GameManager.money)
 
 func _on_staff_pressed() -> void:
 	#print("staff purchased")

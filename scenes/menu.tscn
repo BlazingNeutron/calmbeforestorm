@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0pt0kofm6mtf"]
+[gd_scene load_steps=5 format=3 uid="uid://b0pt0kofm6mtf"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_hvyrn"]
 [ext_resource type="Theme" uid="uid://dh1v3rke5y04p" path="res://assets/themes/Menu_Theme.tres" id="2_c2dds"]
 [ext_resource type="PackedScene" uid="uid://cvfar7cmhhjgq" path="res://scenes/settings.tscn" id="3_rokx6"]
+[ext_resource type="PackedScene" uid="uid://cgvldrw2eexr4" path="res://scenes/high_score_display.tscn" id="4_5upo2"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -58,10 +59,8 @@ theme = ExtResource("2_c2dds")
 text = "Start"
 
 [node name="High Scores" type="Button" parent="VBoxContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("2_c2dds")
-disabled = true
 text = "High Scores
 "
 
@@ -89,7 +88,19 @@ anchor_bottom = 0.0
 offset_left = -400.0
 offset_right = 400.0
 
+[node name="HighScoreContainer" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HighScoreDisplay" parent="HighScoreContainer" instance=ExtResource("4_5upo2")]
+layout_mode = 2
+size_flags_vertical = 3
+
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/High Scores" to="." method="_on_high_scores_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
-[connection signal="visibility_changed" from="Settings" to="." method="_on_settings_visibility_changed"]
+[connection signal="close_settings" from="Settings" to="." method="_on_settings_close_settings"]
+[connection signal="close_score" from="HighScoreContainer/HighScoreDisplay" to="." method="_on_high_score_display_close_score"]

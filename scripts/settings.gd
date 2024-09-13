@@ -1,5 +1,7 @@
 extends Control
 
+signal close_settings
+
 @onready var audio_test_player: AudioStreamPlayer = $AudioTestPlayer
 
 @onready var master_volume: HSlider = $MarginContainer/VBoxContainer/MasterVolumeControls/MasterVolume
@@ -128,4 +130,4 @@ func _on_sfx_mute_icon_gui_input(event: InputEvent) -> void:
 
 func _on_button_pressed() -> void:
 	#print("closing pause menu")
-	self.hide()
+	close_settings.emit()
