@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://jeovohtmmp0a"]
+[gd_scene load_steps=7 format=3 uid="uid://jeovohtmmp0a"]
 
 [ext_resource type="Script" path="res://scripts/storm.gd" id="1_kfjih"]
 [ext_resource type="Texture2D" uid="uid://onosdrnldavq" path="res://assets/sprites/white-lightning.png" id="2_uem3p"]
 [ext_resource type="AudioStream" uid="uid://dv8o8jmpn4w5g" path="res://assets/audio/loud-thunder-192165.mp3" id="3_a37ih"]
+[ext_resource type="Texture2D" uid="uid://cdfvf7lassgef" path="res://assets/sprites/storm-clouds.png" id="4_hlmv0"]
 
 [sub_resource type="Gradient" id="Gradient_ndady"]
 colors = PackedColorArray(0, 0.570804, 0.942444, 1, 1, 1, 1, 1)
@@ -13,6 +14,7 @@ width = 3
 height = 3
 
 [node name="storm" type="CanvasLayer"]
+layer = -1
 script = ExtResource("1_kfjih")
 
 [node name="flash_sprite" type="Sprite2D" parent="."]
@@ -25,12 +27,8 @@ texture = ExtResource("2_uem3p")
 stream = ExtResource("3_a37ih")
 bus = &"SFX"
 
-[node name="PauseBetweenLightning" type="Timer" parent="."]
-wait_time = 6.0
-one_shot = true
-
 [node name="StormDimming" type="ColorRect" parent="."]
-visible = false
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,8 +37,9 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.4)
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="RainParticles" type="CPUParticles2D" parent="."]
 position = Vector2(500, 0)
+emitting = false
 amount = 2000
 lifetime = 6.0
 randomness = 0.5
@@ -56,4 +55,24 @@ damping_max = 100.0
 scale_amount_min = 0.25
 color = Color(0.258824, 0.670588, 1, 0.792157)
 
+[node name="LeftClouds" type="Sprite2D" parent="."]
+show_behind_parent = true
+z_index = -50
+z_as_relative = false
+position = Vector2(-512, 0)
+texture = ExtResource("4_hlmv0")
+
+[node name="RightClouds" type="Sprite2D" parent="."]
+position = Vector2(1800, 0)
+texture = ExtResource("4_hlmv0")
+
+[node name="CloudsMovementTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="PauseBetweenLightning" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[connection signal="timeout" from="CloudsMovementTimer" to="." method="_on_clouds_movement_timer_timeout"]
 [connection signal="timeout" from="PauseBetweenLightning" to="." method="_on_pause_between_lightning_timeout"]

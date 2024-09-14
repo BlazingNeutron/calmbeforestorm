@@ -26,7 +26,6 @@ unique_name_in_owner = true
 process_mode = 1
 
 [node name="Storm" parent="hud" instance=ExtResource("4_76dsj")]
-visible = false
 
 [node name="StormWarning" parent="hud" instance=ExtResource("5_1j2u0")]
 visible = false
@@ -90,11 +89,11 @@ position = Vector2(-512, -334)
 texture = ExtResource("12_2ofki")
 centered = false
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="CloudLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.2, 0.2)
 motion_mirroring = Vector2(1024, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/CloudLayer"]
 texture = ExtResource("12_lo1mh")
 offset = Vector2(900, 0)
 

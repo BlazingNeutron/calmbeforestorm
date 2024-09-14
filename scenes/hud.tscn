@@ -9,7 +9,6 @@
 script = ExtResource("1_v6bi3")
 
 [node name="StorePanel" type="Panel" parent="."]
-visible = false
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -71,6 +70,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="StoreOpener"]
+layout_mode = 0
 offset_right = 246.0
 offset_bottom = 71.0
 

@@ -40,10 +40,12 @@ func _on_storm_warning_warning_complete() -> void:
 	storm_warning.hide()
 
 func _on_storm_start() -> void:
-	storm.show()
+	#storm.show()
+	pass
 
 func _on_storm_stop() -> void:
-	storm.hide()
+	#storm.hide()
+	pass
 
 func _on_game_over() -> void:
 	game_over_screen.show()
