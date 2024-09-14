@@ -20,7 +20,7 @@ signal save_me
 
 @export var time_increment : int = 15
 @export var max_health : float = 100.0
-@export var starting_money : int = 1000
+@export var starting_money : int = 0
 @export var store_items = {
 	"staff" : { "cost": 50, "upgrade": false, "scene": preload("res://scenes/picker_uppers/staff.tscn") },
 	"boat" : { "cost": 250, "upgrade": false, "scene": preload("res://scenes/picker_uppers/boat.tscn") },
@@ -72,6 +72,8 @@ func debit_account(item_name : String) -> void:
 		bonus_walking_speed += 6
 	elif item_name == "save_me":
 		save_me.emit()
+		storm_duration.stop()
+		clear_weather.emit()
 	elif not GameManager.store_items.get(item_name).upgrade:
 		purchase_store_item.emit(item_name)
 
@@ -102,9 +104,9 @@ func start_game() -> void:
 	time_to_next_storm = rng.randi_range(min_time_to_next_storm, max_time_to_next_storm)
 	next_storm_timer.wait_time = time_to_next_storm
 	storm_duration.wait_time = storm_duration_time
-	#next_storm_timer.start()
+	next_storm_timer.start()
 	time_of_day_timer.start()
-	#storm_duration.stop()
+	storm_duration.stop()
 	game_start.emit()
 
 func stop_game(forced: bool) -> void:
