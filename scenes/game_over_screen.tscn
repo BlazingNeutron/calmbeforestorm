@@ -32,20 +32,38 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GameOverRText" type="RichTextLabel" parent="VBoxContainer"]
-custom_minimum_size = Vector2(400, 200)
+custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_6clcf")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_offset_x = 5
 theme_override_fonts/normal_font = ExtResource("2_o0tip")
 theme_override_font_sizes/normal_font_size = 60
 text = "   Game Over"
 fit_content = true
 scroll_active = false
 
+[node name="YourScore" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.854902, 0.270588, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_o0tip")
+theme_override_font_sizes/font_size = 30
+text = "Score - 255"
+
 [node name="RestartButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_o0tip")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_evsl5")
 text = "Restart"
 
@@ -53,6 +71,7 @@ text = "Restart"
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_o0tip")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ob6ec")
 text = "Main Menu"
 

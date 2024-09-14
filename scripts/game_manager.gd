@@ -2,6 +2,7 @@ extends Node
 
 signal game_start
 signal game_over
+signal level_up
 
 signal money_changed
 signal purchase_store_item(store_item_name)
@@ -28,9 +29,9 @@ signal save_me
 	"walking" : { "cost": 150, "upgrade": true },
 	"save_me" : { "cost": 500, "upgrade": true }
 }
-@export var init_max_time_to_next_storm : int = 50
-@export var init_min_time_to_next_storm : int = 25
-@export var initial_storm_duration_time : int = 20
+@export var init_max_time_to_next_storm : int = 35
+@export var init_min_time_to_next_storm : int = 20
+@export var initial_storm_duration_time : int = 15
 @export var initial_spawn_rate : float = 2
 @export var initial_storm_spawn_rate : float = 0.4
 @export var trash_credits : int = 5
@@ -54,6 +55,7 @@ var health_regen : float = initial_health_regen
 var trash_count : int = 0
 var trash_damage_per : float = 2.5
 var bonus_walking_speed : int = initial_walking_speed
+var level = 0
 
 func _ready() -> void:
 	high_scores = Scores.load()
@@ -92,6 +94,7 @@ func start_game() -> void:
 	health = max_health
 	health_changed.emit()
 	score = 0
+	level = 0
 	time_of_day = 0
 	trash_count = 0
 	bonus_walking_speed = initial_walking_speed
@@ -128,7 +131,9 @@ func _game_over() -> void:
 	high_scores.save()
 	game_over.emit()
 
-func level_up():
+func _on_level_up():
+	#print("leveling up")
+	level += 1
 	spawn_rate = spawn_rate/2
 	storm_spawn_rate = storm_spawn_rate/2
 	storm_duration_time += 5
@@ -136,10 +141,11 @@ func level_up():
 		max_time_to_next_storm -= 2
 	if min_time_to_next_storm > 2:
 		min_time_to_next_storm -= 2
+	level_up.emit()
 
 func _on_storm_duration_timeout() -> void:
 	clear_weather.emit()
-	level_up()
+	_on_level_up()
 	next_storm_timer.start()
 
 func _on_time_of_day_timer_timeout() -> void:

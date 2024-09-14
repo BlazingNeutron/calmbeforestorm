@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://iagjcdoeawtf"]
+[gd_scene load_steps=18 format=4 uid="uid://iagjcdoeawtf"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_p5c5y"]
 [ext_resource type="TileSet" uid="uid://dohcdu6rieggc" path="res://assets/sprites/tilset.tres" id="3_2kvtt"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dihxi10qb34q3" path="res://scenes/dodads/dodads.tscn" id="6_m8ls0"]
 [ext_resource type="PackedScene" uid="uid://bxrdan7sk51jh" path="res://scenes/pause_menu.tscn" id="6_onhvb"]
 [ext_resource type="PackedScene" uid="uid://vswc5nx22cd0" path="res://scenes/game_over_screen.tscn" id="6_ptmcp"]
+[ext_resource type="PackedScene" uid="uid://chxhwd4dxx22i" path="res://scenes/wave_complete.tscn" id="7_mj8x3"]
 [ext_resource type="Texture2D" uid="uid://c70cbxj3u7o6e" path="res://assets/sprites/rainbow1.png" id="9_a0ma4"]
 [ext_resource type="Script" path="res://scripts/save_me_rainbow.gd" id="10_0rdwy"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="11_27gv0"]
@@ -38,6 +39,9 @@ visible = false
 [node name="PauseMenu" parent="hud" instance=ExtResource("6_onhvb")]
 process_mode = 2
 visible = false
+
+[node name="WaveComplete" parent="hud" instance=ExtResource("7_mj8x3")]
+modulate = Color(1, 1, 1, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_mode = 1
@@ -107,6 +111,7 @@ texture = ExtResource("12_lo1mh")
 offset = Vector2(900, 0)
 
 [connection signal="warning_complete" from="hud/StormWarning" to="." method="_on_storm_warning_warning_complete"]
+[connection signal="visibility_changed" from="hud/GameOverScreen" to="hud/GameOverScreen" method="_on_visibility_changed"]
 [connection signal="close_pause_menu" from="hud/PauseMenu" to="." method="_on_pause_menu_close_pause_menu"]
 [connection signal="spawned_trash" from="WasteContainer/WasteSpawner" to="PickerUppersContainer/PickerUpperManager" method="_on_waste_spawner_spawned_trash"]
 [connection signal="body_exited" from="BeachBorder" to="." method="_on_beach_border_body_exited"]

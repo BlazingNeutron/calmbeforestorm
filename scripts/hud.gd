@@ -67,4 +67,3 @@ func _on_save_me_pressed() -> void:
 	
 func _on_toggle_store_pressed() -> void:
 	StorePanel.visible = !StorePanel.visible
-	
