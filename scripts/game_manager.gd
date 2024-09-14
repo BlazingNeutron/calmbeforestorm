@@ -65,8 +65,9 @@ func _ready() -> void:
 	get_window().title = "Beach Clean Up Crew"
 
 func credit_account() -> void:
-	money += GameManager.trash_credits
-	money_changed.emit()
+	if not is_game_over:
+		money += GameManager.trash_credits
+		money_changed.emit()
 
 func debit_account(item_name : String) -> void:
 	money -= GameManager.store_items.get(item_name).cost
