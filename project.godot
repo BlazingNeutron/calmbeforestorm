@@ -13,7 +13,8 @@ config_version=5
 config/name="Beach Clean Up Crew"
 run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/sprites/beach-clean-up.png"
+config/windows_native_icon="res://assets/sprites/beach-clean-up.ico"
 
 [autoload]
 

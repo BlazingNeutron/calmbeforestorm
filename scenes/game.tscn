@@ -27,6 +27,7 @@ script = ExtResource("1_p5c5y")
 [node name="hud" parent="." instance=ExtResource("4_ef12f")]
 unique_name_in_owner = true
 process_mode = 1
+visible = false
 
 [node name="Storm" parent="hud" instance=ExtResource("4_76dsj")]
 
