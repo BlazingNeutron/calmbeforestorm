@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://iagjcdoeawtf"]
+[gd_scene load_steps=17 format=4 uid="uid://iagjcdoeawtf"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_p5c5y"]
 [ext_resource type="TileSet" uid="uid://dohcdu6rieggc" path="res://assets/sprites/tilset.tres" id="3_2kvtt"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dihxi10qb34q3" path="res://scenes/dodads/dodads.tscn" id="6_m8ls0"]
 [ext_resource type="PackedScene" uid="uid://bxrdan7sk51jh" path="res://scenes/pause_menu.tscn" id="6_onhvb"]
 [ext_resource type="PackedScene" uid="uid://vswc5nx22cd0" path="res://scenes/game_over_screen.tscn" id="6_ptmcp"]
+[ext_resource type="Texture2D" uid="uid://c70cbxj3u7o6e" path="res://assets/sprites/rainbow1.png" id="9_a0ma4"]
+[ext_resource type="Script" path="res://scripts/save_me_rainbow.gd" id="10_0rdwy"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="11_27gv0"]
 [ext_resource type="Texture2D" uid="uid://brkoee5g5ijsl" path="res://assets/sprites/horizon.png" id="12_2ofki"]
 [ext_resource type="Texture2D" uid="uid://doi1uvali0a5g" path="res://assets/sprites/clouds.png" id="12_lo1mh"]
@@ -53,6 +55,13 @@ tile_set = ExtResource("3_2kvtt")
 
 [node name="Dodads" parent="." instance=ExtResource("6_m8ls0")]
 process_mode = 1
+
+[node name="SaveMeRainbow" type="Sprite2D" parent="Dodads"]
+unique_name_in_owner = true
+position = Vector2(-1500, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("9_a0ma4")
+script = ExtResource("10_0rdwy")
 
 [node name="WasteContainer" type="Node2D" parent="."]
 unique_name_in_owner = true

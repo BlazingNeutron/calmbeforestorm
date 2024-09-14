@@ -108,4 +108,5 @@ func adopt_picker_upper(store_item_name : String) -> void:
 
 func _on_save_me() -> void:
 	for trash in trash_array:
-		trash.clear_trash(false)
+		if trash != null:
+			trash.clear_trash(false)
