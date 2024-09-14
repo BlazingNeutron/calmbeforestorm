@@ -54,6 +54,10 @@ text = "Boat - $250"
 layout_mode = 2
 text = "+0.5% Health Regen - $200"
 
+[node name="WalkingSpeed" type="Button" parent="StorePanel/StoreContainer"]
+layout_mode = 2
+text = "Upgrade Walking Speed - $150"
+
 [node name="TopPanel" type="Panel" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
@@ -105,3 +109,4 @@ size_flags_horizontal = 3
 [connection signal="pressed" from="StorePanel/StoreContainer/Staff" to="." method="_on_staff_pressed"]
 [connection signal="pressed" from="StorePanel/StoreContainer/Boat" to="." method="_on_boat_pressed"]
 [connection signal="pressed" from="StorePanel/StoreContainer/HealthRegen" to="." method="_on_health_regen_pressed"]
+[connection signal="pressed" from="StorePanel/StoreContainer/WalkingSpeed" to="." method="_on_walking_speed_pressed"]

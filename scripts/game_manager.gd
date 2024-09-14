@@ -20,9 +20,11 @@ signal clear_weather
 @export var max_health : float = 100.0
 @export var starting_money : int = 0
 @export var store_items = {
-	"staff" : { "cost": 50, "scene": preload("res://scenes/picker_uppers/staff.tscn") },
-	"boat" : { "cost": 250, "scene": preload("res://scenes/picker_uppers/boat.tscn") },
-	"regen" : { "cost": 200, "scene": preload("res://scenes/picker_uppers/boat.tscn") },
+	"staff" : { "cost": 50, "upgrade": false, "scene": preload("res://scenes/picker_uppers/staff.tscn") },
+	"boat" : { "cost": 250, "upgrade": false, "scene": preload("res://scenes/picker_uppers/boat.tscn") },
+	"regen" : { "cost": 200, "upgrade": true },
+	"walking" : { "cost": 150, "upgrade": true },
+	"save_me" : { "cost": 500, "upgrade": true }
 }
 @export var init_max_time_to_next_storm : int = 50
 @export var init_min_time_to_next_storm : int = 25
@@ -30,6 +32,8 @@ signal clear_weather
 @export var initial_spawn_rate : float = 2
 @export var initial_storm_spawn_rate : float = 0.4
 @export var trash_credits : int = 5
+@export var initial_health_regen : float = 5.0
+@export var initial_walking_speed : int = 0
 
 var max_time_to_next_storm : int = init_max_time_to_next_storm
 var min_time_to_next_storm : int = init_min_time_to_next_storm
@@ -44,9 +48,10 @@ var health : float = 100
 var score : int = 0
 var is_game_over : bool = false
 var high_scores : Scores = null
-var health_regen : float = 5.0
+var health_regen : float = initial_health_regen
 var trash_count : int = 0
 var trash_damage_per : float = 2.5
+var bonus_walking_speed : int = initial_walking_speed
 
 func _ready() -> void:
 	high_scores = Scores.load()
@@ -60,7 +65,9 @@ func debit_account(item_name : String) -> void:
 	money_changed.emit()
 	if item_name == "regen":
 		health_regen += 0.5
-	else:
+	elif item_name == "walking":
+		bonus_walking_speed += 6
+	elif not GameManager.store_items.get(item_name).upgrade:
 		purchase_store_item.emit(item_name)
 
 func update_health() -> void:
@@ -80,6 +87,8 @@ func start_game() -> void:
 	score = 0
 	time_of_day = 0
 	trash_count = 0
+	bonus_walking_speed = initial_walking_speed
+	health_regen = initial_health_regen
 	is_game_over = false
 	rng.randomize()
 	spawn_rate = initial_spawn_rate

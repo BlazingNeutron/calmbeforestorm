@@ -50,6 +50,8 @@ func _on_boat_pressed() -> void:
 func _on_game_time_update(_increment: int) -> void:
 	update_time_display()
 
-
 func _on_health_regen_pressed() -> void:
 	GameManager.debit_account("regen")
+
+func _on_walking_speed_pressed() -> void:
+	GameManager.debit_account("walking")

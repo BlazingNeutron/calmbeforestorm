@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 		if is_water_bound:
 			position = position.move_toward(trash.position, delta * speed * (0.002 * position.y) + 0.9)
 		else:
-			position = position.move_toward(trash.position, delta * speed)
+			position = position.move_toward(trash.position, delta * (speed + GameManager.bonus_walking_speed))
 		if distance < 10:
 			#print("I picked one up")
 			trash.start_pickup()
