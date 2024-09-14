@@ -169,9 +169,7 @@ shape = SubResource("CapsuleShape2D_i6gku")
 position = Vector2(0, -40)
 scale = Vector2(-3, 3)
 sprite_frames = SubResource("SpriteFrames_aok3j")
-animation = &"pickup"
 autoplay = "default"
-frame_progress = 0.248294
 
 [node name="AudioStreamPlayer" parent="." index="2"]
 stream = ExtResource("4_rrgcq")

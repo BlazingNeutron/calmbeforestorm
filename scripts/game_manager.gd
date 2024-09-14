@@ -27,6 +27,7 @@ signal save_me
 	"boat" : { "cost": 250, "upgrade": false, "scene": preload("res://scenes/picker_uppers/boat.tscn") },
 	"regen" : { "cost": 200, "upgrade": true },
 	"walking" : { "cost": 150, "upgrade": true },
+	"boating" : { "cost": 300, "upgrade": true },
 	"save_me" : { "cost": 500, "upgrade": true }
 }
 @export var init_max_time_to_next_storm : int = 35
@@ -36,7 +37,8 @@ signal save_me
 @export var initial_storm_spawn_rate : float = 0.4
 @export var trash_credits : int = 5
 @export var initial_health_regen : float = 5.0
-@export var initial_walking_speed : int = 0
+@export var initial_walking_bonus_speed : int = 0
+@export var initial_boat_bonus_speed : int = 0
 
 var max_time_to_next_storm : int = init_max_time_to_next_storm
 var min_time_to_next_storm : int = init_min_time_to_next_storm
@@ -54,7 +56,8 @@ var high_scores : Scores = null
 var health_regen : float = initial_health_regen
 var trash_count : int = 0
 var trash_damage_per : float = 2.5
-var bonus_walking_speed : int = initial_walking_speed
+var bonus_walking_speed : int = initial_walking_bonus_speed
+var bonus_boat_speed : int = initial_boat_bonus_speed
 var level = 0
 
 func _ready() -> void:
@@ -72,6 +75,8 @@ func debit_account(item_name : String) -> void:
 		health_regen += 0.5
 	elif item_name == "walking":
 		bonus_walking_speed += 6
+	elif item_name == "boating":
+		bonus_boat_speed += 7
 	elif item_name == "save_me":
 		save_me.emit()
 		storm_duration.stop()
@@ -97,7 +102,8 @@ func start_game() -> void:
 	level = 0
 	time_of_day = 0
 	trash_count = 0
-	bonus_walking_speed = initial_walking_speed
+	bonus_walking_speed = initial_walking_bonus_speed
+	bonus_boat_speed = initial_boat_bonus_speed
 	health_regen = initial_health_regen
 	is_game_over = false
 	rng.randomize()

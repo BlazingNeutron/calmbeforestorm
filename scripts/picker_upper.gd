@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 		else:
 			sprite.flip_h = false
 		if is_water_bound:
-			position = position.move_toward(trash.position, delta * speed * (0.002 * position.y) + 0.9)
+			position = position.move_toward(trash.position, delta * (speed + GameManager.bonus_boat_speed) * (0.002 * position.y) + 0.9)
 		else:
 			position = position.move_toward(trash.position, delta * (speed + GameManager.bonus_walking_speed))
 		if distance < 10:
