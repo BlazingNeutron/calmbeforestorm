@@ -24,6 +24,7 @@ func update_money() -> void:
 	money_label.text = "$" + str(money)
 	staff_button.disabled = (money < GameManager.store_items.staff.cost)
 	boat_button.disabled = (money < GameManager.store_items.boat.cost)
+	boat_button.disabled = (money < GameManager.store_items.regen.cost)
 
 func update_time_display() -> void:
 	if GameManager.time_of_day % 60 == 0:
@@ -48,3 +49,7 @@ func _on_boat_pressed() -> void:
 
 func _on_game_time_update(_increment: int) -> void:
 	update_time_display()
+
+
+func _on_health_regen_pressed() -> void:
+	GameManager.debit_account("regen")

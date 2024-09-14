@@ -21,7 +21,8 @@ signal clear_weather
 @export var starting_money : int = 0
 @export var store_items = {
 	"staff" : { "cost": 50, "scene": preload("res://scenes/picker_uppers/staff.tscn") },
-	"boat" : { "cost": 250, "scene": preload("res://scenes/picker_uppers/boat.tscn") }
+	"boat" : { "cost": 250, "scene": preload("res://scenes/picker_uppers/boat.tscn") },
+	"regen" : { "cost": 200, "scene": preload("res://scenes/picker_uppers/boat.tscn") },
 }
 @export var init_max_time_to_next_storm : int = 50
 @export var init_min_time_to_next_storm : int = 25
@@ -57,7 +58,10 @@ func credit_account() -> void:
 func debit_account(item_name : String) -> void:
 	money -= GameManager.store_items.get(item_name).cost
 	money_changed.emit()
-	purchase_store_item.emit(item_name)
+	if item_name == "regen":
+		health_regen += 0.5
+	else:
+		purchase_store_item.emit(item_name)
 
 func update_health() -> void:
 	#print("updating health")

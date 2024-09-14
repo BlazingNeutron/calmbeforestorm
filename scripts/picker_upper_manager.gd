@@ -97,6 +97,8 @@ func search_for_water_trash(pu : Node2D) -> Node2D:
 
 func adopt_picker_upper(store_item_name : String) -> void:
 	#print("adding picker upper")
+	if store_item_name == "regen":
+		return
 	var store_item = GameManager.store_items.get(store_item_name)
 	var new_picker_upper = store_item.scene.instantiate()
 	new_picker_upper.position = new_picker_upper.spawn_position()
