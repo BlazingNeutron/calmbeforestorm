@@ -60,6 +60,11 @@ layout_mode = 2
 disabled = true
 text = "Upgrade Walking Speed - $150"
 
+[node name="SaveMe" type="Button" parent="StorePanel/StoreContainer"]
+layout_mode = 2
+disabled = true
+text = "Somebody Save Me! - $500"
+
 [node name="TopPanel" type="Panel" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
@@ -112,3 +117,4 @@ size_flags_horizontal = 3
 [connection signal="pressed" from="StorePanel/StoreContainer/Boat" to="." method="_on_boat_pressed"]
 [connection signal="pressed" from="StorePanel/StoreContainer/HealthRegen" to="." method="_on_health_regen_pressed"]
 [connection signal="pressed" from="StorePanel/StoreContainer/WalkingSpeed" to="." method="_on_walking_speed_pressed"]
+[connection signal="pressed" from="StorePanel/StoreContainer/SaveMe" to="." method="_on_save_me_pressed"]

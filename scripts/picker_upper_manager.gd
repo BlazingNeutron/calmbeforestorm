@@ -13,6 +13,7 @@ func _ready() -> void:
 	GameManager.purchase_store_item.connect(adopt_picker_upper)
 	decrease_trash_count.connect(GameManager._on_decrease_trash_count)
 	increase_trash_count.connect(GameManager._on_increase_trash_count)
+	GameManager.save_me.connect(_on_save_me)
 
 func _on_waste_spawner_spawned_trash(new_trash) -> void:
 	#print("spawned trash ", new_trash.position.x)
@@ -104,3 +105,7 @@ func adopt_picker_upper(store_item_name : String) -> void:
 	new_picker_upper.position = new_picker_upper.spawn_position()
 	picker_uppers_container.add_child(new_picker_upper)
 	picker_upper_array.push_front(new_picker_upper)
+
+func _on_save_me() -> void:
+	for trash in trash_array:
+		trash.clear_trash(false)

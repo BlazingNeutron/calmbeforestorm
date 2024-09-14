@@ -12,13 +12,15 @@ signal storm_warning
 signal storming
 signal clear_weather
 
+signal save_me
+
 @onready var next_storm_timer: Timer = %NextStormTimer
 @onready var storm_duration: Timer = $StormDuration
 @onready var time_of_day_timer: Timer = $TimeOfDayTimer
 
 @export var time_increment : int = 15
 @export var max_health : float = 100.0
-@export var starting_money : int = 0
+@export var starting_money : int = 1000
 @export var store_items = {
 	"staff" : { "cost": 50, "upgrade": false, "scene": preload("res://scenes/picker_uppers/staff.tscn") },
 	"boat" : { "cost": 250, "upgrade": false, "scene": preload("res://scenes/picker_uppers/boat.tscn") },
@@ -67,6 +69,8 @@ func debit_account(item_name : String) -> void:
 		health_regen += 0.5
 	elif item_name == "walking":
 		bonus_walking_speed += 6
+	elif item_name == "save_me":
+		save_me.emit()
 	elif not GameManager.store_items.get(item_name).upgrade:
 		purchase_store_item.emit(item_name)
 

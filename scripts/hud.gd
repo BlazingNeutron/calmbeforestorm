@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var score_display: Label = %ScoreDisplay
 @onready var health_regen: Button = $StorePanel/StoreContainer/HealthRegen
 @onready var walking_speed: Button = $StorePanel/StoreContainer/WalkingSpeed
+@onready var save_me: Button = $StorePanel/StoreContainer/SaveMe
 
 var day_count = 1
 var hour = 9
@@ -28,6 +29,7 @@ func update_money() -> void:
 	boat_button.disabled = (money < GameManager.store_items.boat.cost)
 	health_regen.disabled = (money < GameManager.store_items.regen.cost)
 	walking_speed.disabled = (money < GameManager.store_items.walking.cost)
+	save_me.disabled = (money < GameManager.store_items.save_me.cost)
 
 func update_time_display() -> void:
 	if GameManager.time_of_day % 60 == 0:
@@ -58,3 +60,6 @@ func _on_health_regen_pressed() -> void:
 
 func _on_walking_speed_pressed() -> void:
 	GameManager.debit_account("walking")
+
+func _on_save_me_pressed() -> void:
+	GameManager.debit_account("save_me")

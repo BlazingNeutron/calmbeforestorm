@@ -65,8 +65,9 @@ func start_pickup() -> void:
 func _on_pick_up_sound_finished() -> void:
 	clear_trash()
 
-func clear_trash():
-	picked_up.emit(self)
+func clear_trash(clear_with_pick_up : bool = true):
+	if clear_with_pick_up:
+		picked_up.emit(self)
 	queue_free()
 
 func move_to_beach_frame() -> void:
