@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://iagjcdoeawtf"]
+[gd_scene load_steps=15 format=4 uid="uid://iagjcdoeawtf"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_p5c5y"]
 [ext_resource type="TileSet" uid="uid://dohcdu6rieggc" path="res://assets/sprites/tilset.tres" id="3_2kvtt"]
@@ -10,26 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://dihxi10qb34q3" path="res://scenes/dodads/dodads.tscn" id="6_m8ls0"]
 [ext_resource type="PackedScene" uid="uid://bxrdan7sk51jh" path="res://scenes/pause_menu.tscn" id="6_onhvb"]
 [ext_resource type="PackedScene" uid="uid://vswc5nx22cd0" path="res://scenes/game_over_screen.tscn" id="6_ptmcp"]
-[ext_resource type="Texture2D" uid="uid://b01qwonhlynnr" path="res://assets/sprites/background.png" id="7_evbw8"]
+[ext_resource type="Script" path="res://scripts/parallax_background.gd" id="11_27gv0"]
+[ext_resource type="Texture2D" uid="uid://brkoee5g5ijsl" path="res://assets/sprites/horizon.png" id="12_2ofki"]
 [ext_resource type="Texture2D" uid="uid://doi1uvali0a5g" path="res://assets/sprites/clouds.png" id="12_lo1mh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hs64v"]
 size = Vector2(1663, 373)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qvknn"]
-atlas = ExtResource("12_lo1mh")
-region = Rect2(0, 0, 1024, 246)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ahqlk"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qvknn")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="game" type="Node2D"]
 process_mode = 3
@@ -92,24 +78,26 @@ position = Vector2(94.5, -86.5)
 shape = SubResource("RectangleShape2D_hs64v")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+process_mode = 1
+script = ExtResource("11_27gv0")
+
+[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.15, 1)
+motion_mirroring = Vector2(4096, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sky"]
+position = Vector2(-512, -334)
+texture = ExtResource("12_2ofki")
+centered = false
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(1024, 0)
 
-[node name="Parallax2D" type="Parallax2D" parent="ParallaxBackground/ParallaxLayer"]
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Parallax2D"]
-position = Vector2(1, -201)
-scale = Vector2(1.149, 1)
-texture = ExtResource("7_evbw8")
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="Parallax2D" type="Parallax2D" parent="ParallaxBackground/ParallaxLayer2"]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ParallaxBackground/ParallaxLayer2/Parallax2D"]
-position = Vector2(0, -201)
-scale = Vector2(1.2, 1)
-sprite_frames = SubResource("SpriteFrames_ahqlk")
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("12_lo1mh")
+offset = Vector2(900, 0)
 
 [connection signal="warning_complete" from="hud/StormWarning" to="." method="_on_storm_warning_warning_complete"]
 [connection signal="close_pause_menu" from="hud/PauseMenu" to="." method="_on_pause_menu_close_pause_menu"]

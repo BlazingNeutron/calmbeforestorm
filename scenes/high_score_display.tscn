@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgvldrw2eexr4"]
+[gd_scene load_steps=4 format=3 uid="uid://cgvldrw2eexr4"]
 
 [ext_resource type="FontFile" uid="uid://q5gr6femctvs" path="res://assets/BeachCrush-ovvaq.ttf" id="1_33uks"]
 [ext_resource type="Script" path="res://scripts/high_score_display.gd" id="1_a7c4x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kyc01"]
 
 [node name="HighScoreDisplay" type="Control"]
 layout_mode = 3
@@ -23,14 +25,22 @@ grow_vertical = 2
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.854902, 0.270588, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("1_33uks")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 48
 text = "High Scores"
 
 [node name="NoScoresYet" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_33uks")
+theme_override_font_sizes/font_size = 28
 text = "No scores yet"
 horizontal_alignment = 1
 
@@ -38,56 +48,79 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
 
 [node name="Score2" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
 
 [node name="Score3" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
 
 [node name="Score4" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
 
 [node name="Score5" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
 
 [node name="Score6" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
 
 [node name="Score7" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
 
 [node name="Score8" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
 
 [node name="Score9" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
 
 [node name="Score10" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
 
 [node name="BackButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_33uks")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kyc01")
 text = "Back"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

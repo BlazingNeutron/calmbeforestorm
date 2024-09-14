@@ -12,9 +12,9 @@ func update_health_bar():
 	#print("update_health_bar ", GameManager.health)
 	value = GameManager.health
 	var styleBox = get_theme_stylebox("fill")
-	if value > 7:
+	if value > 70.0:
 		styleBox.set("bg_color", Color(0.0, 1.0, 0.0))
-	elif value > 3:
+	elif value > 30.0:
 		styleBox.set("bg_color", Color(1.0, 1.0, 0.0))
 	else:
 		styleBox.set("bg_color", Color(1.0, 0.0, 0.0))

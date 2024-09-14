@@ -1,5 +1,8 @@
 extends Node2D
 
+signal increase_trash_count
+signal decrease_trash_count
+
 @onready var picker_uppers_container: Node2D = %PickerUppersContainer
 
 var trash_array : Array = []
@@ -8,6 +11,8 @@ var picker_upper_array : Array = []
 
 func _ready() -> void:
 	GameManager.purchase_store_item.connect(adopt_picker_upper)
+	decrease_trash_count.connect(GameManager._on_decrease_trash_count)
+	increase_trash_count.connect(GameManager._on_increase_trash_count)
 
 func _on_waste_spawner_spawned_trash(new_trash) -> void:
 	#print("spawned trash ", new_trash.position.x)
@@ -18,7 +23,8 @@ func _on_waste_spawner_spawned_trash(new_trash) -> void:
 func _on_trash_landed(new_beach_trash) -> void:
 	#print("Trash landed", position)
 	beach_trash_array.push_front(new_beach_trash)
-	GameManager.update_health(beach_trash_array.size())
+	increase_trash_count.emit()
+	GameManager.update_health()
 
 func _on_trash_picked_up(removed_trash) -> void:
 	#print("a trash was picked up")
@@ -33,8 +39,9 @@ func _on_trash_picked_up(removed_trash) -> void:
 	if beach_trash_index > -1:
 		#print("beach trash removed")
 		beach_trash_array.remove_at(beach_trash_index)
+		decrease_trash_count.emit()
 	GameManager.credit_account()
-	GameManager.update_health(beach_trash_array.size())
+	GameManager.update_health()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

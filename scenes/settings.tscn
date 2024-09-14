@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvfar7cmhhjgq"]
+[gd_scene load_steps=14 format=3 uid="uid://cvfar7cmhhjgq"]
 
 [ext_resource type="Script" path="res://scripts/settings.gd" id="1_qlqq8"]
+[ext_resource type="FontFile" uid="uid://q5gr6femctvs" path="res://assets/BeachCrush-ovvaq.ttf" id="2_0d0m8"]
 [ext_resource type="AudioStream" uid="uid://bstd1fdn8ifwm" path="res://assets/audio/warning-sound-6686.mp3" id="2_b17qc"]
 [ext_resource type="Texture2D" uid="uid://bn82sh0iwhwmd" path="res://assets/sprites/speaker-options.png" id="2_wtedu"]
 
@@ -27,6 +28,8 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_81dvh"]
 atlas = ExtResource("2_wtedu")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_da3a7"]
 
 [node name="Settings" type="Control"]
 process_mode = 3
@@ -56,6 +59,9 @@ layout_mode = 2
 [node name="MasterVolumeLabel" type="Label" parent="MarginContainer/VBoxContainer/MasterVolumeControls"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_0d0m8")
+theme_override_font_sizes/font_size = 28
 text = "Master"
 
 [node name="MasterVolume" type="HSlider" parent="MarginContainer/VBoxContainer/MasterVolumeControls"]
@@ -79,6 +85,9 @@ layout_mode = 2
 [node name="OceanVolumeLabel" type="Label" parent="MarginContainer/VBoxContainer/OceanVolumeControls"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_0d0m8")
+theme_override_font_sizes/font_size = 28
 text = "Ocean"
 
 [node name="OceanVolume" type="HSlider" parent="MarginContainer/VBoxContainer/OceanVolumeControls"]
@@ -102,6 +111,9 @@ layout_mode = 2
 [node name="MusicVolumeLabel" type="Label" parent="MarginContainer/VBoxContainer/MusicVolumeContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_0d0m8")
+theme_override_font_sizes/font_size = 28
 text = "Music"
 
 [node name="MusicVolume" type="HSlider" parent="MarginContainer/VBoxContainer/MusicVolumeContainer"]
@@ -125,6 +137,9 @@ layout_mode = 2
 [node name="SFXVolumeLabel" type="Label" parent="MarginContainer/VBoxContainer/SFXVolumeContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_0d0m8")
+theme_override_font_sizes/font_size = 28
 text = "SFX"
 
 [node name="SFXVolume" type="HSlider" parent="MarginContainer/VBoxContainer/SFXVolumeContainer"]
@@ -145,6 +160,8 @@ texture = SubResource("AtlasTexture_81dvh")
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_0d0m8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_da3a7")
 text = "Return to Menu"
 
 [node name="AudioTestPlayer" type="AudioStreamPlayer" parent="."]

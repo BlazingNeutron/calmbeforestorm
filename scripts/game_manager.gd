@@ -17,7 +17,7 @@ signal clear_weather
 @onready var time_of_day_timer: Timer = $TimeOfDayTimer
 
 @export var time_increment : int = 15
-@export var max_health : int = 10
+@export var max_health : float = 100.0
 @export var starting_money : int = 0
 @export var store_items = {
 	"staff" : { "cost": 50, "scene": preload("res://scenes/picker_uppers/staff.tscn") },
@@ -39,10 +39,13 @@ var rng = RandomNumberGenerator.new()
 var time_to_next_storm : int = 60
 var time_of_day : int = 0
 var money : int = 0
-var health : int = 10
+var health : float = 100
 var score : int = 0
 var is_game_over : bool = false
 var high_scores : Scores = null
+var health_regen : float = 5.0
+var trash_count : int = 0
+var trash_damage_per : float = 2.5
 
 func _ready() -> void:
 	high_scores = Scores.load()
@@ -56,9 +59,11 @@ func debit_account(item_name : String) -> void:
 	money_changed.emit()
 	purchase_store_item.emit(item_name)
 
-func update_health(count : int) -> void:
+func update_health() -> void:
 	#print("updating health")
-	health = max_health - count
+	health = health - (trash_count * trash_damage_per) + health_regen
+	if health > max_health:
+		health = max_health
 	if health <= 0 and not is_game_over:
 		_game_over()
 	health_changed.emit()
@@ -70,6 +75,7 @@ func start_game() -> void:
 	health_changed.emit()
 	score = 0
 	time_of_day = 0
+	trash_count = 0
 	is_game_over = false
 	rng.randomize()
 	spawn_rate = initial_spawn_rate
@@ -78,9 +84,9 @@ func start_game() -> void:
 	time_to_next_storm = rng.randi_range(min_time_to_next_storm, max_time_to_next_storm)
 	next_storm_timer.wait_time = time_to_next_storm
 	storm_duration.wait_time = storm_duration_time
-	next_storm_timer.start()
+	#next_storm_timer.start()
 	time_of_day_timer.start()
-	storm_duration.stop()
+	#storm_duration.stop()
 	game_start.emit()
 
 func stop_game(forced: bool) -> void:
@@ -121,6 +127,7 @@ func _on_time_of_day_timer_timeout() -> void:
 	if not is_game_over:
 		score += time_increment
 	time_update.emit(time_increment)
+	update_health()
 
 func _on_next_storm_timer_timeout() -> void:
 	#print("Next storm warning start")
@@ -130,3 +137,9 @@ func _on_next_storm_timer_timeout() -> void:
 func _on_warning_complete() -> void:
 	storming.emit()
 	storm_duration.start()
+
+func _on_increase_trash_count() -> void:
+	trash_count += 1
+
+func _on_decrease_trash_count() -> void:
+	trash_count -= 1
