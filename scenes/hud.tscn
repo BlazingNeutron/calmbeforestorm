@@ -52,10 +52,12 @@ text = "Boat - $250"
 
 [node name="HealthRegen" type="Button" parent="StorePanel/StoreContainer"]
 layout_mode = 2
+disabled = true
 text = "+0.5% Health Regen - $200"
 
 [node name="WalkingSpeed" type="Button" parent="StorePanel/StoreContainer"]
 layout_mode = 2
+disabled = true
 text = "Upgrade Walking Speed - $150"
 
 [node name="TopPanel" type="Panel" parent="."]
