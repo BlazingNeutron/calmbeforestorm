@@ -1,17 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3y2w6dk2qoel"]
+[gd_scene load_steps=4 format=3 uid="uid://d3y2w6dk2qoel"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_v6bi3"]
 [ext_resource type="PackedScene" uid="uid://dra4j1qwybipq" path="res://scenes/health_bar.tscn" id="4_x782l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2oa1v"]
 
 [node name="hud" type="CanvasLayer"]
 script = ExtResource("1_v6bi3")
 
 [node name="StorePanel" type="Panel" parent="."]
+visible = false
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -246.0
+offset_top = 64.0
+offset_bottom = 64.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -29,15 +34,6 @@ grow_vertical = 2
 [node name="TheStoreLabel" type="Label" parent="StorePanel/StoreContainer"]
 layout_mode = 2
 text = "Clean Up Crew Store"
-horizontal_alignment = 1
-
-[node name="Money" type="Label" parent="StorePanel/StoreContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_colors/font_color = Color(0, 0.964706, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "$0"
 horizontal_alignment = 1
 
 [node name="Staff" type="Button" parent="StorePanel/StoreContainer"]
@@ -64,6 +60,42 @@ text = "Upgrade Walking Speed - $150"
 layout_mode = 2
 disabled = true
 text = "Somebody Save Me! - $500"
+
+[node name="StoreOpener" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 906.0
+offset_bottom = -584.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StoreOpener"]
+offset_right = 246.0
+offset_bottom = 71.0
+
+[node name="Money" type="Label" parent="StoreOpener/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0.964706, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "$0"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="StoreOpener/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ToggleStore" type="Button" parent="StoreOpener/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2oa1v")
+text = "Store"
 
 [node name="TopPanel" type="Panel" parent="."]
 anchors_preset = 10
@@ -118,3 +150,4 @@ size_flags_horizontal = 3
 [connection signal="pressed" from="StorePanel/StoreContainer/HealthRegen" to="." method="_on_health_regen_pressed"]
 [connection signal="pressed" from="StorePanel/StoreContainer/WalkingSpeed" to="." method="_on_walking_speed_pressed"]
 [connection signal="pressed" from="StorePanel/StoreContainer/SaveMe" to="." method="_on_save_me_pressed"]
+[connection signal="pressed" from="StoreOpener/HBoxContainer/MarginContainer/ToggleStore" to="." method="_on_toggle_store_pressed"]

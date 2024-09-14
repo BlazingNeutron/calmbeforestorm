@@ -3,7 +3,7 @@ extends Node
 var rng = RandomNumberGenerator.new()
 #Centered around Vector2(0, 250)
 @export var min_x = -550
-@export var max_x = 300
+@export var max_x = 550
 @export var default_y = 250
 
 func spawn_waste():

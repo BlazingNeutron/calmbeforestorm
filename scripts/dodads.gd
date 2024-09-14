@@ -64,7 +64,7 @@ func start_dodad(dodad_name : String) -> void:
 		x = rng.randi_range(-530, 500)
 		y = rng.randi_range(200, 290)
 	elif not dodad_item.beach:
-		x = rng.randi_range(-530, 480)
+		x = rng.randi_range(-530, 530)
 		y = rng.randi_range(-90, 180)
 	if dodad_name != "wave":
 		current_dodad = sprite

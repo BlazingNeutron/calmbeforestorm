@@ -57,6 +57,7 @@ var bonus_walking_speed : int = initial_walking_speed
 
 func _ready() -> void:
 	high_scores = Scores.load()
+	get_window().title = "Beach Clean Up Crew"
 
 func credit_account() -> void:
 	money += GameManager.trash_credits
