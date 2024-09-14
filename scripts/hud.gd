@@ -8,6 +8,7 @@ extends CanvasLayer
 @onready var health_regen: Button = $StorePanel/StoreContainer/HealthRegen
 @onready var walking_speed: Button = $StorePanel/StoreContainer/WalkingSpeed
 @onready var save_me: Button = $StorePanel/StoreContainer/SaveMe
+@onready var StorePanel = $StorePanel
 
 var day_count = 1
 var hour = 9
@@ -63,3 +64,7 @@ func _on_walking_speed_pressed() -> void:
 
 func _on_save_me_pressed() -> void:
 	GameManager.debit_account("save_me")
+	
+func _on_toggle_store_pressed() -> void:
+	StorePanel.visible = !StorePanel.visible
+	
