@@ -3,3 +3,5 @@
 /android/
 export/
 highscore.tres
+*.kra~
+*.png~

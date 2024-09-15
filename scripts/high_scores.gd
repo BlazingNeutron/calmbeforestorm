@@ -2,7 +2,7 @@ class_name Scores extends Resource
 
 @export var high_scores : Array = []
 
-const SAVE_PATH:String = "res://highscore.tres"
+const SAVE_PATH:String = "user://highscore.tres"
 	
 func save() -> void:
 	ResourceSaver.save(self, SAVE_PATH)

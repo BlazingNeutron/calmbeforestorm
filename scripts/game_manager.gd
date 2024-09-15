@@ -61,6 +61,7 @@ var bonus_boat_speed : int = initial_boat_bonus_speed
 var level = 0
 
 func _ready() -> void:
+	rng.randomize()
 	high_scores = Scores.load()
 	get_window().title = "Beach Clean Up Crew"
 
@@ -79,6 +80,7 @@ func debit_account(item_name : String) -> void:
 	elif item_name == "boating":
 		bonus_boat_speed += 7
 	elif item_name == "save_me":
+		trash_count = 0
 		save_me.emit()
 		storm_duration.stop()
 		clear_weather.emit()
@@ -96,9 +98,7 @@ func update_health() -> void:
 
 func start_game() -> void:
 	money = starting_money
-	money_changed.emit()
 	health = max_health
-	health_changed.emit()
 	score = 0
 	level = 0
 	time_of_day = 0
@@ -107,17 +107,22 @@ func start_game() -> void:
 	bonus_boat_speed = initial_boat_bonus_speed
 	health_regen = initial_health_regen
 	is_game_over = false
-	rng.randomize()
 	spawn_rate = initial_spawn_rate
 	storm_spawn_rate = initial_storm_spawn_rate
 	storm_duration_time = initial_storm_duration_time
+	max_time_to_next_storm = init_max_time_to_next_storm
+	min_time_to_next_storm = init_min_time_to_next_storm
 	time_to_next_storm = rng.randi_range(min_time_to_next_storm, max_time_to_next_storm)
 	next_storm_timer.wait_time = time_to_next_storm
 	storm_duration.wait_time = storm_duration_time
+	
 	next_storm_timer.start()
 	time_of_day_timer.start()
 	storm_duration.stop()
+	
 	game_start.emit()
+	money_changed.emit()
+	health_changed.emit()
 
 func stop_game(forced: bool) -> void:
 	if forced:
@@ -141,8 +146,8 @@ func _game_over() -> void:
 func _on_level_up():
 	#print("leveling up")
 	level += 1
-	spawn_rate = spawn_rate/2
-	storm_spawn_rate = storm_spawn_rate/2
+	spawn_rate = spawn_rate/1.2
+	storm_spawn_rate = storm_spawn_rate/1.2
 	storm_duration_time += 5
 	if max_time_to_next_storm > 2:
 		max_time_to_next_storm -= 2

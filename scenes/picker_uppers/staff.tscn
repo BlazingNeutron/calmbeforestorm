@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b10cl55tii0or" path="res://scenes/picker_uppers/picker_upper.tscn" id="1_k6qb4"]
 [ext_resource type="Texture2D" uid="uid://d07kq21jqqswf" path="res://assets/sprites/staff1.png" id="2_cdoh3"]
 [ext_resource type="Script" path="res://scripts/staff.gd" id="2_s4vg2"]
-[ext_resource type="AudioStream" uid="uid://cckex47jyoq5l" path="res://assets/audio/strange-creature-talks-96872.mp3" id="3_yyda3"]
+[ext_resource type="AudioStream" uid="uid://b7tvo32lbkob0" path="res://assets/audio/hmmm-question.mp3" id="4_pfwhb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_254wm"]
 size = Vector2(63, 108)
@@ -157,6 +157,6 @@ autoplay = "default"
 frame_progress = 0.854221
 
 [node name="AudioStreamPlayer" parent="." index="2"]
-stream = ExtResource("3_yyda3")
-pitch_scale = 1.5
+stream = ExtResource("4_pfwhb")
+volume_db = -4.0
 autoplay = false

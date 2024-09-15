@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://iagjcdoeawtf"]
+[gd_scene load_steps=19 format=4 uid="uid://iagjcdoeawtf"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_p5c5y"]
 [ext_resource type="TileSet" uid="uid://dohcdu6rieggc" path="res://assets/sprites/tilset.tres" id="3_2kvtt"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c70cbxj3u7o6e" path="res://assets/sprites/rainbow1.png" id="9_a0ma4"]
 [ext_resource type="Script" path="res://scripts/save_me_rainbow.gd" id="10_0rdwy"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="11_27gv0"]
+[ext_resource type="AudioStream" uid="uid://brkba8q7ef6w" path="res://assets/audio/magic-spell-shoot-sound-effect-full-pack-link-in-comments-236816.mp3" id="12_0imu7"]
 [ext_resource type="Texture2D" uid="uid://brkoee5g5ijsl" path="res://assets/sprites/horizon.png" id="12_2ofki"]
 [ext_resource type="Texture2D" uid="uid://doi1uvali0a5g" path="res://assets/sprites/clouds.png" id="12_lo1mh"]
 
@@ -66,6 +67,10 @@ position = Vector2(-1500, 0)
 scale = Vector2(4, 4)
 texture = ExtResource("9_a0ma4")
 script = ExtResource("10_0rdwy")
+
+[node name="SaveMeSparkle" type="AudioStreamPlayer" parent="Dodads"]
+stream = ExtResource("12_0imu7")
+bus = &"SFX"
 
 [node name="WasteContainer" type="Node2D" parent="."]
 unique_name_in_owner = true
