@@ -110,3 +110,5 @@ func _on_save_me() -> void:
 	for trash in trash_array:
 		if trash != null:
 			trash.clear_trash(false)
+	for pu in picker_upper_array:
+		pu.assigned = false
