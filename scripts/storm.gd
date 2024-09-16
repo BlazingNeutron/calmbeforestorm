@@ -16,6 +16,7 @@ var clouds_on_the_move : bool = false
 func _ready() -> void:
 	GameManager.storming.connect(start)
 	GameManager.clear_weather.connect(stop)
+	GameManager.save_me.connect(stop)
 
 func _process(delta: float) -> void:
 	if storming and not thunder_still_rolls:
@@ -59,3 +60,6 @@ func _on_pause_between_lightning_timeout() -> void:
 
 func _on_clouds_movement_timer_timeout() -> void:
 	clouds_on_the_move = false
+	if not storming:
+		left_clouds.position.x = -512
+		right_clouds.position.x = 1800

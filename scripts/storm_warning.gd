@@ -10,6 +10,7 @@ var replay_count : int = 0
 
 func _ready() -> void:
 	GameManager.storm_warning.connect(start)
+	GameManager.save_me.connect(stop)
 	warning_complete.connect(GameManager._on_warning_complete)
 
 func start() -> void:
@@ -21,6 +22,11 @@ func start() -> void:
 	tween.tween_property(pulsing_warning, "modulate:a", 0.3, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(pulsing_warning, "modulate:a", 1, 1).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(pulsing_warning, "modulate:a", 0, 1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+func stop() -> void:
+	var tween = create_tween()
+	storm_warning_sound.stop()
+	tween.tween_property(pulsing_warning, "modulate:a", 0, 0.1).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_IN_OUT)
 
 func _on_storm_warning_sound_finished() -> void:
 	if replay_count < replays:

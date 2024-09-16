@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3y2w6dk2qoel"]
+[gd_scene load_steps=5 format=3 uid="uid://d3y2w6dk2qoel"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_v6bi3"]
+[ext_resource type="Theme" uid="uid://dajhajhah0v4p" path="res://scenes/hud.tres" id="2_jb288"]
 [ext_resource type="PackedScene" uid="uid://dra4j1qwybipq" path="res://scenes/health_bar.tscn" id="4_x782l"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2oa1v"]
@@ -65,6 +66,15 @@ layout_mode = 2
 disabled = true
 text = "Somebody Save Me! - $500"
 
+[node name="HSeparator" type="HSeparator" parent="StorePanel/StoreContainer"]
+layout_mode = 2
+
+[node name="Hide Store" type="Button" parent="StorePanel/StoreContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_jb288")
+text = "Close Store"
+
 [node name="StoreOpener" type="Panel" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -99,6 +109,7 @@ theme_override_constants/margin_bottom = 15
 [node name="ToggleStore" type="Button" parent="StoreOpener/HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("2_jb288")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2oa1v")
 text = "Store"
 
@@ -156,4 +167,5 @@ size_flags_horizontal = 3
 [connection signal="pressed" from="StorePanel/StoreContainer/HealthRegen" to="." method="_on_health_regen_pressed"]
 [connection signal="pressed" from="StorePanel/StoreContainer/BoatSpeed" to="." method="_on_boat_speed_pressed"]
 [connection signal="pressed" from="StorePanel/StoreContainer/SaveMe" to="." method="_on_save_me_pressed"]
+[connection signal="pressed" from="StorePanel/StoreContainer/Hide Store" to="." method="_on_toggle_store_pressed"]
 [connection signal="pressed" from="StoreOpener/HBoxContainer/MarginContainer/ToggleStore" to="." method="_on_toggle_store_pressed"]

@@ -83,7 +83,7 @@ func debit_account(item_name : String) -> void:
 		trash_count = 0
 		save_me.emit()
 		storm_duration.stop()
-		clear_weather.emit()
+		storm_duration.timeout.emit()
 	elif not GameManager.store_items.get(item_name).upgrade:
 		purchase_store_item.emit(item_name)
 
