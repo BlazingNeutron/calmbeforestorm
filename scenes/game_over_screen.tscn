@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://vswc5nx22cd0"]
 
 [ext_resource type="Theme" uid="uid://dh1v3rke5y04p" path="res://assets/themes/Menu_Theme.tres" id="1_6clcf"]
-[ext_resource type="Script" path="res://scripts/game_over_screen.gd" id="1_d2w1d"]
+[ext_resource type="Script" uid="uid://d2p3b1ywmgjnt" path="res://scripts/game_over_screen.gd" id="1_d2w1d"]
 [ext_resource type="FontFile" uid="uid://q5gr6femctvs" path="res://assets/BeachCrush-ovvaq.ttf" id="2_o0tip"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_evsl5"]

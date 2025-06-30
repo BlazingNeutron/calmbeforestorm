@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c0dlktmiep01t"]
 
-[ext_resource type="Script" path="res://scripts/background_music.gd" id="1_8radv"]
+[ext_resource type="Script" uid="uid://dyoceks2gg5y5" path="res://scripts/background_music.gd" id="1_8radv"]
 [ext_resource type="AudioStream" uid="uid://dx7od2swe5ubv" path="res://assets/audio/gentle-ocean-waves-birdsong-and-gull-7109.mp3" id="1_ronxa"]
 [ext_resource type="AudioStream" uid="uid://cb4niewv4lobs" path="res://assets/audio/cottagecore-17463.mp3" id="2_phf5r"]
 

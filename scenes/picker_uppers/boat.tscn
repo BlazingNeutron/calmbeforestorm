@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://jn4so5ga8k8b"]
 
 [ext_resource type="PackedScene" uid="uid://b10cl55tii0or" path="res://scenes/picker_uppers/picker_upper.tscn" id="1_esetv"]
-[ext_resource type="Script" path="res://scripts/boat.gd" id="2_ya3ju"]
+[ext_resource type="Script" uid="uid://c05pgrk1hiak" path="res://scripts/boat.gd" id="2_ya3ju"]
 [ext_resource type="Texture2D" uid="uid://346hhayuf0qo" path="res://assets/sprites/boat-Sheet.png" id="3_qyy50"]
 [ext_resource type="AudioStream" uid="uid://w4n834bkubgs" path="res://assets/audio/boat-horn-103003.mp3" id="4_rrgcq"]
 

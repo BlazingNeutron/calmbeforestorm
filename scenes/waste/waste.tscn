@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dr2cu7ky4p2pn"]
 
-[ext_resource type="Script" path="res://scripts/waste.gd" id="1_6ryxd"]
+[ext_resource type="Script" uid="uid://bg2j1x5u3vhnq" path="res://scripts/waste.gd" id="1_6ryxd"]
 [ext_resource type="AudioStream" uid="uid://b11fgwmhcp61q" path="res://assets/audio/pick-up.mp3" id="3_1rnft"]
 [ext_resource type="Texture2D" uid="uid://djybfgt77i2tt" path="res://assets/sprites/poof-Sheet.png" id="3_lviwg"]
 [ext_resource type="Texture2D" uid="uid://bec7j0phsnlht" path="res://assets/sprites/coin1.png" id="4_j3es4"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cgvldrw2eexr4"]
 
 [ext_resource type="FontFile" uid="uid://q5gr6femctvs" path="res://assets/BeachCrush-ovvaq.ttf" id="1_33uks"]
-[ext_resource type="Script" path="res://scripts/high_score_display.gd" id="1_a7c4x"]
+[ext_resource type="Script" uid="uid://belmsgkkmun3o" path="res://scripts/high_score_display.gd" id="1_a7c4x"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kyc01"]
 
